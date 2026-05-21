@@ -1,0 +1,324 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Event resources" id="hoEPG40xdMpWPZD7tlWe">
+    <mxGraphModel dx="1994" dy="692" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-5" parent="1" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fillColor=light-dark(#E3C800,#C1B211);fontColor=#000000;strokeColor=#8D7600;" value="Event is shown" vertex="1">
+          <mxGeometry height="60" width="100" x="-550" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-6" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=light-dark(#E3C800,#C1B211);fontColor=#000000;strokeColor=#8D7600;" value="How many choices?" vertex="1">
+          <mxGeometry height="60" width="100" x="-390" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-7" edge="1" parent="1" source="RzgRsZxfovr0NeffBWMw-8" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-16" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="100" y="840" as="sourcePoint" />
+            <mxPoint x="-550" y="760" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-8" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-6" style="endArrow=classic;html=1;rounded=0;" target="RzgRsZxfovr0NeffBWMw-9" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="230" y="870" as="sourcePoint" />
+            <mxPoint x="220" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E3C800, #c1b211);fontColor=#000000;strokeColor=#8D7600;" value="Choice is a &lt;u style=&quot;&quot;&gt;Resource&lt;/u&gt;" vertex="1">
+          <mxGeometry height="60" width="100" x="-390" y="1090" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=10;" value="Only one" vertex="1">
+          <mxGeometry height="10" width="50" x="-340" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-12" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-6" style="endArrow=classic;html=1;rounded=0;" target="RzgRsZxfovr0NeffBWMw-8" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="230" y="800" as="sourcePoint" />
+            <mxPoint x="230" y="860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-13" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=10;" value="Two ore more" vertex="1">
+          <mxGeometry height="20" width="40" x="-290" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E3C800,#C1B211);fontColor=#000000;strokeColor=#8D7600;" value="Event contains choices" vertex="1">
+          <mxGeometry height="60" width="100" x="-70" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-17" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-16" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-28" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="110" y="780" as="sourcePoint" />
+            <mxPoint x="170" y="780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RzgRsZxfovr0NeffBWMw-7" edge="1" parent="1" source="RzgRsZxfovr0NeffBWMw-9" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="RzgRsZxfovr0NeffBWMw-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-500" y="790" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-21" edge="1" parent="1" source="RzgRsZxfovr0NeffBWMw-8" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-24" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-40" y="770" as="sourcePoint" />
+            <mxPoint x="20" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-24" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Resource&lt;/font&gt;&lt;/div&gt;MultipleChoiceEventData" vertex="1">
+          <mxGeometry height="130" width="160" x="-260" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-25" parent="Cq-5hrQ4DS2pr3MFBX4z-24" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var event_text : String" vertex="1">
+          <mxGeometry height="40" width="160" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-26" parent="Cq-5hrQ4DS2pr3MFBX4z-24" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var difficulty : int" vertex="1">
+          <mxGeometry height="20" width="160" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-27" parent="Cq-5hrQ4DS2pr3MFBX4z-24" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var choices : Array[MultipleChoiceData]" vertex="1">
+          <mxGeometry height="40" width="160" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-28" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E3C800,#C1B211);fontColor=#000000;strokeColor=#8D7600;" value="Choice is a &lt;u style=&quot;&quot;&gt;Resource&lt;/u&gt;" vertex="1">
+          <mxGeometry height="60" width="100" x="90" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-32" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Resource&lt;/font&gt;&lt;/div&gt;MultipleChoiceData" vertex="1">
+          <mxGeometry height="130" width="160" x="60" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-33" parent="Cq-5hrQ4DS2pr3MFBX4z-32" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var choice_text: String" vertex="1">
+          <mxGeometry height="40" width="160" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-34" parent="Cq-5hrQ4DS2pr3MFBX4z-32" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var success_rate: int" vertex="1">
+          <mxGeometry height="20" width="160" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-35" parent="Cq-5hrQ4DS2pr3MFBX4z-32" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var outcomes: Array[OutcomeData]" vertex="1">
+          <mxGeometry height="40" width="160" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-36" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-28" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-32" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="650" y="784.21875" as="sourcePoint" />
+            <mxPoint x="660" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-37" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Resource&lt;/font&gt;&lt;/div&gt;OneChoiceData" vertex="1">
+          <mxGeometry height="190" width="160" x="-230" y="1025" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-38" parent="Cq-5hrQ4DS2pr3MFBX4z-37" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var choice_text: String" vertex="1">
+          <mxGeometry height="40" width="160" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-56" parent="Cq-5hrQ4DS2pr3MFBX4z-37" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var outcome_text: String" vertex="1">
+          <mxGeometry height="40" width="160" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-42" parent="Cq-5hrQ4DS2pr3MFBX4z-37" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var health_change : int" vertex="1">
+          <mxGeometry height="40" width="160" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-43" parent="Cq-5hrQ4DS2pr3MFBX4z-37" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var sanity_change: int" vertex="1">
+          <mxGeometry height="40" width="160" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-41" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-9" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-46" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="230" y="920" as="sourcePoint" />
+            <mxPoint x="230" y="980" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-44" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E3C800,#C1B211);fontColor=#000000;strokeColor=#8D7600;" value="Choice contains outcomes" vertex="1">
+          <mxGeometry height="60" width="100" x="250" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-45" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-28" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-44" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points" />
+            <mxPoint x="390" y="740" as="sourcePoint" />
+            <mxPoint x="390" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-69" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-46" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="Cq-5hrQ4DS2pr3MFBX4z-68" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-46" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E3C800,#C1B211);fontColor=#000000;strokeColor=#8D7600;" value="Choice contains an outcome" vertex="1">
+          <mxGeometry height="60" width="100" x="-390" y="1210" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-48" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E3C800,#C1B211);fontColor=#000000;strokeColor=#8D7600;" value="Outcome is a &lt;u style=&quot;&quot;&gt;Resource&lt;/u&gt;" vertex="1">
+          <mxGeometry height="60" width="100" x="410" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-50" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-44" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-48" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points" />
+            <mxPoint x="440" y="770" as="sourcePoint" />
+            <mxPoint x="500" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-51" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Resource&lt;/font&gt;&lt;/div&gt;OutcomeData" vertex="1">
+          <mxGeometry height="130" width="160" x="380" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-52" parent="Cq-5hrQ4DS2pr3MFBX4z-51" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var outcome_text: String" vertex="1">
+          <mxGeometry height="40" width="160" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-53" parent="Cq-5hrQ4DS2pr3MFBX4z-51" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var health_change : int" vertex="1">
+          <mxGeometry height="20" width="160" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-54" parent="Cq-5hrQ4DS2pr3MFBX4z-51" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var sanity_change: int" vertex="1">
+          <mxGeometry height="40" width="160" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-55" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-48" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-51" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="390" y="740" as="sourcePoint" />
+            <mxPoint x="390" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-58" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-48" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-59" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="740" y="760" as="sourcePoint" />
+            <mxPoint x="810" y="760" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-59" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=light-dark(#660000,#990000);strokeColor=light-dark(#660000,#660000);fontColor=#000000;fillStyle=auto;" value="Select a choice" vertex="1">
+          <mxGeometry height="60" width="100" x="410" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-60" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#660000,#990000);gradientColor=none;strokeColor=light-dark(#660000,#660000);" value="Subtract the choice&#39;s success rate with the event&#39;s difficulty" vertex="1">
+          <mxGeometry height="60" width="100" x="410" y="970" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-61" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-59" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-60" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="750" y="770" as="sourcePoint" />
+            <mxPoint x="830" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-62" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#660000,#990000);gradientColor=none;strokeColor=light-dark(#660000,#660000);" value="Calculate the average of the player&#39;s health and sanity points" vertex="1">
+          <mxGeometry height="60" width="100" x="410" y="1090" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-64" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-60" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-62" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="910" y="770" as="sourcePoint" />
+            <mxPoint x="980" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-65" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#660000,#990000);gradientColor=none;strokeColor=light-dark(#660000,#660000);" value="Calculate the average of the success rate and the health-sanity average" vertex="1">
+          <mxGeometry height="60" width="100" x="410" y="1210" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-66" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-62" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-65" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1080" y="770" as="sourcePoint" />
+            <mxPoint x="1140" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-68" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=light-dark(#660000,#990000);strokeColor=light-dark(#660000,#660000);fontColor=#000000;fillStyle=auto;" value="Select the choice" vertex="1">
+          <mxGeometry height="60" width="100" x="-390" y="1330" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-70" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#660000,#990000);gradientColor=none;strokeColor=light-dark(#660000,#660000);" value="Roll the success rate" vertex="1">
+          <mxGeometry height="60" width="100" x="410" y="1330" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-71" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-65" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-70" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1240" y="770" as="sourcePoint" />
+            <mxPoint x="1300" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-73" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-70" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-74" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="870" y="1160" as="sourcePoint" />
+            <mxPoint x="860" y="1330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-74" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=light-dark(#660000,#990000);fontColor=#000000;strokeColor=light-dark(#660000,#660000);" value="Successful roll?" vertex="1">
+          <mxGeometry height="60" width="100" x="410" y="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-75" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#660000,#990000);gradientColor=none;strokeColor=light-dark(#660000,#660000);" value="Outcome 1 happens" vertex="1">
+          <mxGeometry height="60" width="100" x="250" y="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-76" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#660000,#990000);gradientColor=none;strokeColor=light-dark(#660000,#660000);" value="Outcome 2 happens" vertex="1">
+          <mxGeometry height="60" width="100" x="410" y="1570" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-77" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-74" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-76" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="870" y="1280" as="sourcePoint" />
+            <mxPoint x="870" y="1340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-78" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-74" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-75" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="870" y="1400" as="sourcePoint" />
+            <mxPoint x="870" y="1460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-79" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=10;" value="Yes" vertex="1">
+          <mxGeometry height="10" width="20" x="370" y="1470" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-80" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=10;" value="No" vertex="1">
+          <mxGeometry height="10" width="20" x="460" y="1530" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-81" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-75" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" target="Cq-5hrQ4DS2pr3MFBX4z-5" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="870" y="1280" as="sourcePoint" />
+            <mxPoint x="870" y="1340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-82" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-76" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" target="Cq-5hrQ4DS2pr3MFBX4z-5" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="660" y="1370" as="sourcePoint" />
+            <mxPoint x="-250" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-83" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#660000,#990000);gradientColor=none;strokeColor=light-dark(#660000,#660000);" value="Outcome happens" vertex="1">
+          <mxGeometry height="60" width="100" x="-250" y="1330" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-84" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-68" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-83" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="280" y="1010" as="sourcePoint" />
+            <mxPoint x="350" y="1010" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-85" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-83" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" target="Cq-5hrQ4DS2pr3MFBX4z-5" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="-200" y="1480" />
+              <mxPoint x="-500" y="1480" />
+            </Array>
+            <mxPoint x="430" y="1010" as="sourcePoint" />
+            <mxPoint x="500" y="1010" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-86" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=10;" value="OneChoiceData combines Choice and Outcome resources" vertex="1">
+          <mxGeometry height="50" width="80" x="-40" y="975" as="geometry" />
+        </mxCell>
+        <mxCell id="Cq-5hrQ4DS2pr3MFBX4z-87" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-86" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-37" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="230" y="1160" as="sourcePoint" />
+            <mxPoint x="230" y="1220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RzgRsZxfovr0NeffBWMw-3" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Resource&lt;/font&gt;&lt;/div&gt;OneChoiceEventData" vertex="1">
+          <mxGeometry height="110" width="160" x="-230" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="RzgRsZxfovr0NeffBWMw-4" parent="RzgRsZxfovr0NeffBWMw-3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var event_text : String" vertex="1">
+          <mxGeometry height="40" width="160" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RzgRsZxfovr0NeffBWMw-6" parent="RzgRsZxfovr0NeffBWMw-3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="@export var choice : OneChoiceData" vertex="1">
+          <mxGeometry height="40" width="160" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="RzgRsZxfovr0NeffBWMw-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E3C800,#C1B211);fontColor=#000000;strokeColor=#8D7600;" value="Event is a &lt;u&gt;Resource&lt;/u&gt;" vertex="1">
+          <mxGeometry height="60" width="100" x="-230" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="RzgRsZxfovr0NeffBWMw-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E3C800,#C1B211);fontColor=#000000;strokeColor=#8D7600;" value="Event is a &lt;u&gt;Resource&lt;/u&gt;" vertex="1">
+          <mxGeometry height="60" width="100" x="-390" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="RzgRsZxfovr0NeffBWMw-10" edge="1" parent="1" source="RzgRsZxfovr0NeffBWMw-14" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-9" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-170" y="800" as="sourcePoint" />
+            <mxPoint x="-170" y="860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RzgRsZxfovr0NeffBWMw-13" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-5" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="Cq-5hrQ4DS2pr3MFBX4z-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-280" y="890" as="sourcePoint" />
+            <mxPoint x="-220" y="890" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RzgRsZxfovr0NeffBWMw-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E3C800,#C1B211);fontColor=#000000;strokeColor=#8D7600;" value="Event contains a choice" vertex="1">
+          <mxGeometry height="60" width="100" x="-390" y="970" as="geometry" />
+        </mxCell>
+        <mxCell id="RzgRsZxfovr0NeffBWMw-17" edge="1" parent="1" source="RzgRsZxfovr0NeffBWMw-9" style="endArrow=classic;html=1;rounded=0;" target="RzgRsZxfovr0NeffBWMw-14" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-330" y="1040" as="sourcePoint" />
+            <mxPoint x="-340" y="1010" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RzgRsZxfovr0NeffBWMw-18" edge="1" parent="1" source="Cq-5hrQ4DS2pr3MFBX4z-9" style="endArrow=classic;html=1;rounded=0;" target="Cq-5hrQ4DS2pr3MFBX4z-37" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-330" y="1040" as="sourcePoint" />
+            <mxPoint x="-330" y="1100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
