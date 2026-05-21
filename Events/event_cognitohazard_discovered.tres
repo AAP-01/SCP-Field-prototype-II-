@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="MultipleChoiceEventData" load_steps=9 format=3 uid="uid://cl0h5kv3nu7wk"]
+
+[ext_resource type="Script" uid="uid://0m74norco0wn" path="res://Resources/Multiple Choice/multiple_choice_data.gd" id="1_8kx05"]
+[ext_resource type="Script" uid="uid://cswjkcuav8byn" path="res://Resources/Multiple Choice/outcome_data.gd" id="2_oiwbm"]
+[ext_resource type="Script" uid="uid://cghl73ax2sjo6" path="res://Resources/Multiple Choice/multiple_choice_event_data.gd" id="2_pxri2"]
+
+[sub_resource type="Resource" id="Resource_6288d"]
+script = ExtResource("2_oiwbm")
+outcome_text = "The equipment had a false positive"
+advancement = 2
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_sjrv5"]
+script = ExtResource("2_oiwbm")
+outcome_text = "Should've listened to the alert"
+health_change = -5
+sanity_change = -15
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_haaqa"]
+script = ExtResource("1_8kx05")
+choice_text = "Proceed (50% of losing some sanity)"
+success_rate = 50
+outcomes = Array[ExtResource("2_oiwbm")]([SubResource("Resource_6288d"), SubResource("Resource_sjrv5")])
+metadata/_custom_type_script = "uid://0m74norco0wn"
+
+[sub_resource type="Resource" id="Resource_pxri2"]
+script = ExtResource("2_oiwbm")
+outcome_text = "The alternative path proved to be safe, but you couldn't shake off the thought of what was in the hallway"
+sanity_change = -2
+advancement = 1
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_fhhyj"]
+script = ExtResource("1_8kx05")
+choice_text = "Take the other way (lose a bit of sanity)"
+success_rate = 100
+outcomes = Array[ExtResource("2_oiwbm")]([SubResource("Resource_pxri2")])
+metadata/_custom_type_script = "uid://0m74norco0wn"
+
+[resource]
+script = ExtResource("2_pxri2")
+event_text = "Your equipment has flagged a potential cognitohazard in the following hallway, which should lead closer to the next sector, but it hasn't been reliable for some time. There is another, though much longer, path."
+difficulty = 5
+choices = Array[ExtResource("1_8kx05")]([SubResource("Resource_haaqa"), SubResource("Resource_fhhyj")])
+metadata/_custom_type_script = "uid://cghl73ax2sjo6"

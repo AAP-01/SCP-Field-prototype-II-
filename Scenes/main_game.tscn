@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c5wvwig2js1e7"]
+[gd_scene load_steps=2 format=3 uid="uid://c5wvwig2js1e7"]
+
+[ext_resource type="Script" uid="uid://bspnt4mtesjd8" path="res://Scripts/event_manager.gd" id="1_l756w"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -12,13 +14,13 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.022000002
-anchor_top = 0.15400001
-anchor_right = 0.15900001
-anchor_bottom = 0.24700001
+anchor_top = 0.193
+anchor_right = 0.179
+anchor_bottom = 0.28500003
 offset_left = -0.34400177
-offset_top = 0.20799255
-offset_right = -0.16801453
-offset_bottom = -0.055999756
+offset_top = -0.06400299
+offset_right = -0.20800781
+offset_bottom = 0.3199768
 theme_override_constants/separation = 4
 
 [node name="Health" type="HBoxContainer" parent="Stat Bars"]
@@ -67,9 +69,12 @@ custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "INSERT EVENT HERE"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Event"]
+visibility_layer = 2
 layout_mode = 2
 
 [node name="Choice 1" type="Button" parent="Event/VBoxContainer"]
@@ -87,3 +92,8 @@ text = "CHOICE 3"
 [node name="Choice 4" type="Button" parent="Event/VBoxContainer"]
 layout_mode = 2
 text = "CHOICE 4"
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="Event Manager" type="Node" parent="Managers"]
+script = ExtResource("1_l756w")

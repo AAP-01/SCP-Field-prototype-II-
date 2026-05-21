@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="MultipleChoiceEventData" load_steps=12 format=3 uid="uid://lfuut83ljfei"]
+
+[ext_resource type="Script" uid="uid://cghl73ax2sjo6" path="res://Resources/Multiple Choice/multiple_choice_event_data.gd" id="1_aojih"]
+[ext_resource type="Script" uid="uid://0m74norco0wn" path="res://Resources/Multiple Choice/multiple_choice_data.gd" id="1_xkww3"]
+[ext_resource type="Script" uid="uid://cswjkcuav8byn" path="res://Resources/Multiple Choice/outcome_data.gd" id="2_6ilx4"]
+
+[sub_resource type="Resource" id="Resource_hidv2"]
+script = ExtResource("2_6ilx4")
+outcome_text = "Nobody heard the explosion"
+health_change = 33
+sanity_change = 25
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_b7yaa"]
+script = ExtResource("2_6ilx4")
+outcome_text = "You were heard"
+health_change = -10
+sanity_change = -10
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_vh8u4"]
+script = ExtResource("1_xkww3")
+choice_text = "Use an explosive"
+success_rate = 66
+outcomes = Array[ExtResource("2_6ilx4")]([SubResource("Resource_hidv2"), SubResource("Resource_b7yaa")])
+metadata/_custom_type_script = "uid://0m74norco0wn"
+
+[sub_resource type="Resource" id="Resource_ildnj"]
+script = ExtResource("2_6ilx4")
+outcome_text = "You succesfully opened the gate"
+health_change = 33
+sanity_change = 25
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_3pi4p"]
+script = ExtResource("2_6ilx4")
+outcome_text = "You were spotted fumbling with the lockpick"
+health_change = -10
+sanity_change = -10
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_bmqwj"]
+script = ExtResource("1_xkww3")
+choice_text = "Lockpick it"
+success_rate = 80
+outcomes = Array[ExtResource("2_6ilx4")]([SubResource("Resource_ildnj"), SubResource("Resource_3pi4p")])
+metadata/_custom_type_script = "uid://0m74norco0wn"
+
+[sub_resource type="Resource" id="Resource_1ftoi"]
+script = ExtResource("2_6ilx4")
+outcome_text = "You leave it alome, but it slightly demoralized you"
+sanity_change = -3
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_pu045"]
+script = ExtResource("1_xkww3")
+choice_text = "Leave the armoury alone"
+success_rate = 100
+outcomes = Array[ExtResource("2_6ilx4")]([SubResource("Resource_1ftoi")])
+metadata/_custom_type_script = "uid://0m74norco0wn"
+
+[resource]
+script = ExtResource("1_aojih")
+event_text = "You've found the facility's central armoury. Breaching it will provide a decent health and sanity boost, but you risk alerting nearby creatures"
+difficulty = 3
+choices = Array[ExtResource("1_xkww3")]([SubResource("Resource_vh8u4"), SubResource("Resource_bmqwj"), SubResource("Resource_pu045")])
+metadata/_custom_type_script = "uid://cghl73ax2sjo6"

@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="MultipleChoiceEventData" load_steps=9 format=3 uid="uid://cphs3lbeediby"]
+
+[ext_resource type="Script" uid="uid://0m74norco0wn" path="res://Resources/Multiple Choice/multiple_choice_data.gd" id="1_7dimk"]
+[ext_resource type="Script" uid="uid://cswjkcuav8byn" path="res://Resources/Multiple Choice/outcome_data.gd" id="2_7ik55"]
+[ext_resource type="Script" uid="uid://cghl73ax2sjo6" path="res://Resources/Multiple Choice/multiple_choice_event_data.gd" id="2_enh1v"]
+
+[sub_resource type="Resource" id="Resource_1x7un"]
+script = ExtResource("2_7ik55")
+outcome_text = "A survivor!"
+sanity_change = 15
+advancement = 1
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_kuyjt"]
+script = ExtResource("2_7ik55")
+outcome_text = "It was a monster's blood. How did it lock the door?"
+health_change = -15
+sanity_change = -5
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_qqn41"]
+script = ExtResource("1_7dimk")
+choice_text = "Investigate it"
+success_rate = 70
+outcomes = Array[ExtResource("2_7ik55")]([SubResource("Resource_1x7un"), SubResource("Resource_kuyjt")])
+metadata/_custom_type_script = "uid://0m74norco0wn"
+
+[sub_resource type="Resource" id="Resource_lsviv"]
+script = ExtResource("2_7ik55")
+outcome_text = "You move on"
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_rn03m"]
+script = ExtResource("1_7dimk")
+choice_text = "Nobody could survive in a place like this"
+success_rate = 100
+outcomes = Array[ExtResource("2_7ik55")]([SubResource("Resource_lsviv")])
+metadata/_custom_type_script = "uid://0m74norco0wn"
+
+[resource]
+script = ExtResource("2_enh1v")
+event_text = "You've stumbled upon signs of at least one survivor. Fresh blood on the floor leads to the locked door of the medical bay"
+difficulty = 1
+choices = Array[ExtResource("1_7dimk")]([SubResource("Resource_qqn41"), SubResource("Resource_rn03m")])
+metadata/_custom_type_script = "uid://cghl73ax2sjo6"
