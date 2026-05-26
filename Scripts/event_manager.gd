@@ -1,34 +1,88 @@
 extends Node
 class_name EventManager
 
+signal button_pressed
+
 @onready var event_text: Label = $"../../Event/Event Text"
-var event
-var choices : Array[Button]
+static var event : Resource
+static var selected_choice : Resource
+var choice_buttons : Array[Button]
+
+signal choice_selected(outcome : Resource)
 
 # Set up the first event upon starting
 func _ready() -> void:
-	choices.append($"../../Event/VBoxContainer/Choice 1")	# 0
-	choices.append($"../../Event/VBoxContainer/Choice 2")	# 1
-	choices.append($"../../Event/VBoxContainer/Choice 3")	# 2
-	choices.append($"../../Event/VBoxContainer/Choice 4")	# 3
+	choice_buttons.append($"../../Event/VBoxContainer/Choice 1")	# 0
+	choice_buttons.append($"../../Event/VBoxContainer/Choice 2")	# 1
+	choice_buttons.append($"../../Event/VBoxContainer/Choice 3")	# 2
+	choice_buttons.append($"../../Event/VBoxContainer/Choice 4")	# 3
 	
 	select_event()
-	display_event()
 	
 func select_event() -> void:
 	event = EventList.events[randi_range(0, EventList.events.size() - 1)]
+	display_event()
 	
 func display_event() -> void:
+	# Reset visibility
+	for button in choice_buttons:
+		button.show()
+	
 	event_text.text = event.event_text
 	print("Event selected: " + event.resource_path.get_file())
 	
-	var index = 0
 	if event is MultipleChoiceEventData:
 		for i in range(event.choices.size()):
-			choices[index].text = event.choices[index].choice_text
-			index += 1
+			choice_buttons[i].text = event.choices[i].choice_text
 	elif event is OneChoiceEventData:
-		choices[0].text = event.choice.outcome_text
-		choices[1].hide()
-		choices[2].hide()
-		choices[3].hide()
+		choice_buttons[0].text = event.choice.outcome_text
+		choice_buttons[1].hide()
+		choice_buttons[2].hide()
+		choice_buttons[3].hide()
+		
+func _on_choice_1_pressed() -> void:
+	run_success_rate(0)
+	
+func _on_choice_2_pressed() -> void:
+	run_success_rate(1)
+
+func _on_choice_3_pressed() -> void:
+	run_success_rate(2)
+
+func _on_choice_4_pressed() -> void:
+	run_success_rate(3)
+
+func run_success_rate(index : int) -> void:
+	if event is MultipleChoiceEventData:
+		print("Selected: " + event.choices[index].choice_text)
+		
+		# Choices with 100% success immediately emit the signal
+		if event.choices[index].success_rate == 100:
+			choice_selected.emit(event.choices[index].outcomes[0])
+			return	# End prematurely since everything below would be useless
+		
+		# Calculating the success rate
+		var success_rate = event.choices[index].success_rate - event.difficulty
+		var player_stats = (PlayerManager.health + PlayerManager.sanity) / 2
+		var final_success_rate = (success_rate + player_stats) / 2
+		final_success_rate = clamp(final_success_rate, 0, 100)
+		
+		print("	Initial success rate: " + str(event.choices[index].success_rate))
+		print("	After subtracting with difficulty: " + str(success_rate))
+		print("	Health and sanity average: " + str(player_stats))
+		print("	Final success rate: " + str(final_success_rate))
+		print("-----")
+		
+		# Roll
+		var roll = randi_range(0, 100)
+		if roll <= final_success_rate:
+			# Success. Outcome 0 is always the succesful outcome
+			print("Outcome: " + event.choices[index].outcomes[0].outcome_text)
+			choice_selected.emit(event.choices[index].outcomes[0])
+		else:
+			# Failure. Outcome 1 is always the failed outcome
+			print("Outcome: " + event.choices[index].outcomes[1].outcome_text)
+			choice_selected.emit(event.choices[index].outcomes[1])
+	elif event is OneChoiceEventData:
+		print("Outcome: " + event.choice.outcome_text)
+		choice_selected.emit(event.choice)
