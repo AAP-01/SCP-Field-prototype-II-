@@ -1,11 +1,8 @@
 extends Node
 class_name EventManager
 
-signal button_pressed
-
 @onready var event_text: Label = $"../../Event/Event Text"
-static var event : Resource
-static var selected_choice : Resource
+var event : Resource
 var choice_buttons : Array[Button]
 
 signal choice_selected(outcome : Resource)
@@ -63,7 +60,7 @@ func run_success_rate(index : int) -> void:
 		
 		# Calculating the success rate
 		var success_rate = event.choices[index].success_rate - event.difficulty
-		var player_stats = (PlayerManager.health + PlayerManager.sanity) / 2
+		var player_stats = (PlayerManager.health + PlayerManager.sanity) / 2.00
 		var final_success_rate = (success_rate + player_stats) / 2
 		final_success_rate = clamp(final_success_rate, 0, 100)
 		

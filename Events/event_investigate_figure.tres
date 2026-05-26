@@ -20,6 +20,7 @@ metadata/_custom_type_script = "uid://cswjkcuav8byn"
 [sub_resource type="Resource" id="Resource_8ayh7"]
 script = ExtResource("1_xmmc3")
 choice_text = "Investigate"
+success_rate = 50
 outcomes = Array[ExtResource("2_vgtog")]([SubResource("Resource_cc75q"), SubResource("Resource_pd37v")])
 metadata/_custom_type_script = "uid://0m74norco0wn"
 
