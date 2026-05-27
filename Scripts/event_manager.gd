@@ -29,8 +29,13 @@ func display_event() -> void:
 	print("Event selected: " + event.resource_path.get_file())
 	
 	if event is MultipleChoiceEventData:
-		for i in range(event.choices.size()):
-			choice_buttons[i].text = event.choices[i].choice_text
+		for choice in range(event.choices.size()):	# Not a for-each loop. Goes from 0 to the choice's number of choices
+			choice_buttons[choice].text = event.choices[choice].choice_text
+			
+		for button in choice_buttons:
+			if button.get_index() > event.choices.size() - 1:
+				button.hide()
+			
 	elif event is OneChoiceEventData:
 		choice_buttons[0].text = event.choice.outcome_text
 		choice_buttons[1].hide()
@@ -83,3 +88,7 @@ func run_success_rate(index : int) -> void:
 	elif event is OneChoiceEventData:
 		print("Outcome: " + event.choice.outcome_text)
 		choice_selected.emit(event.choice)
+		
+# This runs when PlayerManager to indicate the stats have been changed and can rerun an event
+func _on_player_manager_stats_changed() -> void:
+	select_event()

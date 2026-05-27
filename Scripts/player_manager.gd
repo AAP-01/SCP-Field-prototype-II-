@@ -1,9 +1,14 @@
 extends Node
 class_name PlayerManager
 
+@onready var health_amount: Label = $"../../Stat Bars/Health/Health Amount"
+@onready var sanity_amount: Label = $"../../Stat Bars/Sanity/Sanity Amount"
+
 static var health = 100
 static var sanity = 100
 static var advancement = 0
+
+signal stats_changed
 
 static func reset_data() -> void:
 	health = 100
@@ -17,10 +22,14 @@ func _on_event_manager_choice_selected(outcome: Resource) -> void:
 	sanity = clamp(sanity, 0, 100)
 	advancement += outcome.advancement
 	
+	health_amount.text = str(health) + "/100"
+	sanity_amount.text = str(sanity) + "/100"
+	
 	print("	Health change: " + str(outcome.health_change) + ", Current health: " + str(health))
 	print("	Sanity change: " + str(outcome.sanity_change) + ", Current sanity: " + str(sanity))
 	print("	Advancement: " + str(outcome.advancement) + ", Current advancement: " + str(advancement))
 	print("=====")
+	stats_changed.emit()
 	
 	# Send to game over
 	if health <= 0:

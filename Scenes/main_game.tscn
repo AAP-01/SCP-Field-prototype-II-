@@ -32,11 +32,14 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "HEALTH"
+vertical_alignment = 1
 
 [node name="Health Amount" type="Label" parent="Stat Bars/Health"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "100/100"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="Sanity" type="HBoxContainer" parent="Stat Bars"]
 layout_mode = 2
@@ -46,11 +49,14 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "SANITY"
+vertical_alignment = 1
 
 [node name="Sanity Amount" type="Label" parent="Stat Bars/Sanity"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "100/100"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="Event" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(652, 0)
@@ -107,3 +113,4 @@ script = ExtResource("3_6j5ir")
 [connection signal="pressed" from="Event/VBoxContainer/Choice 3" to="Managers/Event Manager" method="_on_choice_3_pressed"]
 [connection signal="pressed" from="Event/VBoxContainer/Choice 4" to="Managers/Event Manager" method="_on_choice_4_pressed"]
 [connection signal="choice_selected" from="Managers/Event Manager" to="Managers/Player Manager" method="_on_event_manager_choice_selected"]
+[connection signal="stats_changed" from="Managers/Player Manager" to="Managers/Event Manager" method="_on_player_manager_stats_changed"]
