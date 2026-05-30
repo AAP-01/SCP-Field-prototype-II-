@@ -11,5 +11,7 @@ func _ready() -> void:
 		game_over_text.text = "Mission success"
 		
 func _on_restart_pressed() -> void:
-	PlayerManager.reset_data()
 	get_tree().change_scene_to_file("res://Scenes/main_game.tscn")
+	
+func _on_return_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/start.tscn")

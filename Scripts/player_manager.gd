@@ -10,7 +10,7 @@ static var advancement = 0
 
 signal stats_changed
 
-static func reset_data() -> void:
+func _ready() -> void:
 	health = 100
 	sanity = 100
 	advancement = 0

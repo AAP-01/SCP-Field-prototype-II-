@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://qdpk0k1ajxtp"]
+
+[ext_resource type="Script" uid="uid://dhjwphn8vwx6k" path="res://Scenes/debriefing.gd" id="1_jyi4j"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jyi4j")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.363
+anchor_top = 0.772
+anchor_right = 0.628
+anchor_bottom = 0.89000005
+offset_left = 10.324005
+offset_top = -0.25601196
+offset_right = 0.043945313
+offset_bottom = 0.27996826
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "Understood"
+
+[node name="Objective" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.18900001
+anchor_top = 0.46800002
+anchor_right = 0.81100005
+anchor_bottom = 0.532
+offset_left = -0.22801208
+offset_top = -0.26400757
+offset_right = 0.22796631
+offset_bottom = 0.26400757
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Objective: Survive until extraction"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
