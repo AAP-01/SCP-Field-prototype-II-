@@ -7,21 +7,23 @@
 [sub_resource type="Resource" id="Resource_1x7un"]
 script = ExtResource("2_7ik55")
 outcome_text = "A survivor!"
-sanity_change = 15
 advancement = 1
+morale_change = 10
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_kuyjt"]
 script = ExtResource("2_7ik55")
 outcome_text = "It was a monster's blood. How did it lock the door?"
 health_change = -15
-sanity_change = -5
+ammunition_change = -10
+morale_change = -15
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_qqn41"]
 script = ExtResource("1_7dimk")
 choice_text = "Investigate it"
 success_rate = 70
+random = true
 outcomes = Array[ExtResource("2_7ik55")]([SubResource("Resource_1x7un"), SubResource("Resource_kuyjt")])
 metadata/_custom_type_script = "uid://0m74norco0wn"
 

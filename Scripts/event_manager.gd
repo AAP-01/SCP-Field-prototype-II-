@@ -62,16 +62,52 @@ func run_success_rate(index : int) -> void:
 		if event.choices[index].success_rate == 100:
 			choice_selected.emit(event.choices[index].outcomes[0])
 			return	# End prematurely since everything below would be useless
+			
+		# Skip calculating success rate if the choice is random
+		if event.choices[index].random:
+			print("This is a random event")
+			print("Success rate: " + str(event.choices[index].success_rate))
+			
+			var roll = randi_range(0, 100)
+			if roll <= event.choices[index].success_rate:
+				print("Outcome: " + event.choices[index].outcomes[0].outcome_text)
+				choice_selected.emit(event.choices[index].outcomes[0])
+				return
+			else:
+				# Failure. Outcome 1 is always the failed outcome
+				print("Outcome: " + event.choices[index].outcomes[1].outcome_text)
+				choice_selected.emit(event.choices[index].outcomes[1])
+				return
+				
+		# Calculating missing ammunition penalty on the success rate
+		# Actual ammunition change is in Player Manager in check_ammo()
+		var remaining_ammunition = PlayerManager.ammunition + event.choices[index].ammunition_change
+		var missing_ammunition_penalty
 		
+		match remaining_ammunition:
+			var r when r >= -5:
+				missing_ammunition_penalty = 1.00
+			var r when r <= -6 and r >= -10:
+				missing_ammunition_penalty = 0.90
+			var r when r <= -11 and r >= -15:
+				missing_ammunition_penalty = 0.80
+			var r when r <= -16 and r >= -20:
+				missing_ammunition_penalty = 0.60
+			var r when r <= -21:
+				missing_ammunition_penalty = 0.00
+				
 		# Calculating the success rate
 		var success_rate = event.choices[index].success_rate - event.difficulty
-		var player_stats = (PlayerManager.health + PlayerManager.sanity) / 2.00
-		var final_success_rate = (success_rate + player_stats) / 2
+		var player_stats = ((PlayerManager.health * 50) + (PlayerManager.sanity * 15) + (PlayerManager.morale * 35)) / 100
+		success_rate = (success_rate + player_stats) / 2.00
+		var final_success_rate = success_rate * missing_ammunition_penalty
 		final_success_rate = clamp(final_success_rate, 0, 100)
 		
+		# For console
+		print("	Missing ammunition penalty: " + str(missing_ammunition_penalty))
 		print("	Initial success rate: " + str(event.choices[index].success_rate))
 		print("	After subtracting with difficulty: " + str(success_rate))
-		print("	Health and sanity average: " + str(player_stats))
+		print("	Player stat average: " + str(player_stats))
 		print("	Final success rate: " + str(final_success_rate))
 		print("-----")
 		

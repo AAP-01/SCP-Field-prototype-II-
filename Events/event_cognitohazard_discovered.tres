@@ -15,25 +15,27 @@ script = ExtResource("2_oiwbm")
 outcome_text = "Should've listened to the alert"
 health_change = -5
 sanity_change = -15
+morale_change = -5
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_haaqa"]
 script = ExtResource("1_8kx05")
-choice_text = "Proceed (50% of losing some sanity)"
+choice_text = "Proceed"
 success_rate = 50
+random = true
 outcomes = Array[ExtResource("2_oiwbm")]([SubResource("Resource_6288d"), SubResource("Resource_sjrv5")])
 metadata/_custom_type_script = "uid://0m74norco0wn"
 
 [sub_resource type="Resource" id="Resource_pxri2"]
 script = ExtResource("2_oiwbm")
 outcome_text = "The alternative path proved to be safe, but you couldn't shake off the thought of what was in the hallway"
-sanity_change = -2
 advancement = 1
+morale_change = -2
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_fhhyj"]
 script = ExtResource("1_8kx05")
-choice_text = "Take the other way (lose a bit of sanity)"
+choice_text = "Take the other way"
 success_rate = 100
 outcomes = Array[ExtResource("2_oiwbm")]([SubResource("Resource_pxri2")])
 metadata/_custom_type_script = "uid://0m74norco0wn"

@@ -7,8 +7,8 @@
 [sub_resource type="Resource" id="Resource_cc75q"]
 script = ExtResource("2_vgtog")
 outcome_text = "A survivor!"
-sanity_change = 10
 advancement = 1
+morale_change = 5
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_pd37v"]
@@ -21,13 +21,14 @@ metadata/_custom_type_script = "uid://cswjkcuav8byn"
 script = ExtResource("1_xmmc3")
 choice_text = "Investigate"
 success_rate = 50
+random = true
 outcomes = Array[ExtResource("2_vgtog")]([SubResource("Resource_cc75q"), SubResource("Resource_pd37v")])
 metadata/_custom_type_script = "uid://0m74norco0wn"
 
 [sub_resource type="Resource" id="Resource_aqkvp"]
 script = ExtResource("2_vgtog")
 outcome_text = "You went the oppsite way the figure went, but you still hear shuffling behind"
-sanity_change = -2
+morale_change = -2
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_wbfp4"]

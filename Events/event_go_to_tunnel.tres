@@ -7,21 +7,23 @@
 [sub_resource type="Resource" id="Resource_gt1a4"]
 script = ExtResource("2_jdjxg")
 outcome_text = "It lead you straight to the surface"
-sanity_change = 10
 advancement = 3
+morale_change = 15
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_b0ndj"]
 script = ExtResource("2_jdjxg")
 outcome_text = "Some grotesque creature had made it its home"
 health_change = -20
-sanity_change = -15
+ammunition_change = -10
+morale_change = -15
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_kcvwj"]
 script = ExtResource("1_eublt")
 choice_text = "Enter the tunnel"
 success_rate = 45
+random = true
 outcomes = Array[ExtResource("2_jdjxg")]([SubResource("Resource_gt1a4"), SubResource("Resource_b0ndj")])
 metadata/_custom_type_script = "uid://0m74norco0wn"
 

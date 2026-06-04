@@ -6,7 +6,10 @@
 [sub_resource type="Resource" id="Resource_14u4s"]
 script = ExtResource("1_r87sf")
 outcome_text = "Excellent"
-health_change = 30
+health_change = 15
+status = "gain"
+ammunition_change = 30
+morale_change = 5
 metadata/_custom_type_script = "uid://3v87af55rfeo"
 
 [resource]

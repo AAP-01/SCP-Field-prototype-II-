@@ -7,15 +7,17 @@
 [sub_resource type="Resource" id="Resource_hidv2"]
 script = ExtResource("2_6ilx4")
 outcome_text = "Nobody heard the explosion"
-health_change = 33
-sanity_change = 25
+health_change = 20
+ammunition_change = 30
+morale_change = 5
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_b7yaa"]
 script = ExtResource("2_6ilx4")
 outcome_text = "You were heard"
 health_change = -10
-sanity_change = -10
+ammunition_change = -10
+morale_change = -5
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_vh8u4"]
@@ -28,15 +30,17 @@ metadata/_custom_type_script = "uid://0m74norco0wn"
 [sub_resource type="Resource" id="Resource_ildnj"]
 script = ExtResource("2_6ilx4")
 outcome_text = "You succesfully opened the gate"
-health_change = 33
-sanity_change = 25
+health_change = 20
+ammunition_change = 30
+morale_change = 5
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_3pi4p"]
 script = ExtResource("2_6ilx4")
 outcome_text = "You were spotted fumbling with the lockpick"
 health_change = -10
-sanity_change = -10
+ammunition_change = -10
+morale_change = -5
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_bmqwj"]
@@ -48,8 +52,8 @@ metadata/_custom_type_script = "uid://0m74norco0wn"
 
 [sub_resource type="Resource" id="Resource_1ftoi"]
 script = ExtResource("2_6ilx4")
-outcome_text = "You leave it alome, but it slightly demoralized you"
-sanity_change = -3
+outcome_text = "You leave it alone, but it slightly demoralized you"
+morale_change = -3
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
 [sub_resource type="Resource" id="Resource_pu045"]
