@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MultipleChoiceEventData" load_steps=9 format=3 uid="uid://cl0h5kv3nu7wk"]
+[gd_resource type="Resource" script_class="MultipleChoiceEventData" load_steps=14 format=3 uid="uid://cl0h5kv3nu7wk"]
 
 [ext_resource type="Script" uid="uid://0m74norco0wn" path="res://Resources/Multiple Choice/multiple_choice_data.gd" id="1_8kx05"]
 [ext_resource type="Script" uid="uid://cswjkcuav8byn" path="res://Resources/Multiple Choice/outcome_data.gd" id="2_oiwbm"]
@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://cswjkcuav8byn"
 script = ExtResource("2_oiwbm")
 outcome_text = "Should've listened to the alert"
 health_change = -5
-sanity_change = -15
+sanity_change = -4
 morale_change = -5
 metadata/_custom_type_script = "uid://cswjkcuav8byn"
 
@@ -40,9 +40,48 @@ success_rate = 100
 outcomes = Array[ExtResource("2_oiwbm")]([SubResource("Resource_pxri2")])
 metadata/_custom_type_script = "uid://0m74norco0wn"
 
+[sub_resource type="Resource" id="Resource_n5psb"]
+script = ExtResource("2_oiwbm")
+outcome_text = "The girl let you pass"
+advancement = 2
+morale_change = 3
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_uaqk1"]
+script = ExtResource("2_oiwbm")
+outcome_text = "The girl attacked"
+health_change = -5
+sanity_change = -7
+morale_change = -6
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_oiwbm"]
+script = ExtResource("1_8kx05")
+choice_text = "Proceed"
+success_rate = 75
+random = true
+outcomes = Array[ExtResource("2_oiwbm")]([SubResource("Resource_n5psb"), SubResource("Resource_uaqk1")])
+metadata/_custom_type_script = "uid://0m74norco0wn"
+
+[sub_resource type="Resource" id="Resource_l1803"]
+script = ExtResource("2_oiwbm")
+outcome_text = "The girl cried"
+advancement = 1
+morale_change = -3
+metadata/_custom_type_script = "uid://cswjkcuav8byn"
+
+[sub_resource type="Resource" id="Resource_i4sec"]
+script = ExtResource("1_8kx05")
+choice_text = "It is not real"
+success_rate = 100
+outcomes = Array[ExtResource("2_oiwbm")]([SubResource("Resource_l1803")])
+metadata/_custom_type_script = "uid://0m74norco0wn"
+
 [resource]
 script = ExtResource("2_pxri2")
 event_text = "Your equipment has flagged a potential cognitohazard in the following hallway, which should lead closer to the next sector, but it hasn't been reliable for some time. There is another, though much longer, path."
+low_sanity_event_text = "The girl in the hallway calls"
 difficulty = 5
 choices = Array[ExtResource("1_8kx05")]([SubResource("Resource_haaqa"), SubResource("Resource_fhhyj")])
+low_sanity_choices = Array[ExtResource("1_8kx05")]([SubResource("Resource_oiwbm"), SubResource("Resource_i4sec")])
 metadata/_custom_type_script = "uid://cghl73ax2sjo6"

@@ -18,22 +18,39 @@ func _ready() -> void:
 	
 func select_event() -> void:
 	event = EventList.events[randi_range(0, EventList.events.size() - 1)]
+	
+	# Set the set of choices for the event depending on sanity
+	if event is MultipleChoiceEventData:
+		if PlayerManager.sanity >= 30:
+			event.chosen_choices = event.choices
+		else:
+			event.chosen_choices = event.low_sanity_choices
+			
 	display_event()
 	
 func display_event() -> void:
 	# Reset visibility
 	for button in choice_buttons:
 		button.show()
-	
-	event_text.text = event.event_text
+		
 	print("Event selected: " + event.resource_path.get_file())
 	
+	# Show event text
+	if PlayerManager.sanity >= 30:
+		event_text.text = event.event_text
+		print("Normal sanity modifier")
+	else:
+		event_text.text = event.low_sanity_event_text
+		print("Low sanity modifier")
+		
+	# Show the choices' text on the buttons
 	if event is MultipleChoiceEventData:
-		for choice in range(event.choices.size()):	# Not a for-each loop. Goes from 0 to the choice's number of choices
-			choice_buttons[choice].text = event.choices[choice].choice_text
-			
+		for i in range(event.chosen_choices.size()):	# Not a for-each loop. Goes from 0 to the choice's number of choices
+			choice_buttons[i].text = event.chosen_choices[i].choice_text
+		
+		# Hide unused buttons
 		for button in choice_buttons:
-			if button.get_index() > event.choices.size() - 1:
+			if button.get_index() > event.chosen_choices.size() - 1:
 				button.hide()
 			
 	elif event is OneChoiceEventData:
@@ -56,32 +73,32 @@ func _on_choice_4_pressed() -> void:
 
 func run_success_rate(index : int) -> void:
 	if event is MultipleChoiceEventData:
-		print("Selected: " + event.choices[index].choice_text)
+		print("Selected: " + event.chosen_choices[index].choice_text)
 		
 		# Choices with 100% success immediately emit the signal
-		if event.choices[index].success_rate == 100:
-			choice_selected.emit(event.choices[index].outcomes[0])
+		if event.chosen_choices[index].success_rate == 100:
+			choice_selected.emit(event.chosen_choices[index].outcomes[0])
 			return	# End prematurely since everything below would be useless
 			
 		# Skip calculating success rate if the choice is random
-		if event.choices[index].random:
+		if event.chosen_choices[index].random:
 			print("This is a random event")
-			print("Success rate: " + str(event.choices[index].success_rate))
+			print("Success rate: " + str(event.chosen_choices[index].success_rate))
 			
 			var roll = randi_range(0, 100)
-			if roll <= event.choices[index].success_rate:
-				print("Outcome: " + event.choices[index].outcomes[0].outcome_text)
-				choice_selected.emit(event.choices[index].outcomes[0])
+			if roll <= event.chosen_choices[index].success_rate:
+				print("Outcome: " + event.chosen_choices[index].outcomes[0].outcome_text)
+				choice_selected.emit(event.chosen_choices[index].outcomes[0])
 				return
 			else:
 				# Failure. Outcome 1 is always the failed outcome
-				print("Outcome: " + event.choices[index].outcomes[1].outcome_text)
-				choice_selected.emit(event.choices[index].outcomes[1])
+				print("Outcome: " + event.chosen_choices[index].outcomes[1].outcome_text)
+				choice_selected.emit(event.chosen_choices[index].outcomes[1])
 				return
 				
 		# Calculating missing ammunition penalty on the success rate
 		# Actual ammunition change is in Player Manager in check_ammo()
-		var remaining_ammunition = PlayerManager.ammunition + event.choices[index].ammunition_change
+		var remaining_ammunition = PlayerManager.ammunition + event.chosen_choices[index].ammunition_change
 		var missing_ammunition_penalty
 		
 		match remaining_ammunition:
