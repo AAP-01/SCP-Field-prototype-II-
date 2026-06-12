@@ -50,7 +50,7 @@ metadata/_custom_type_script = "uid://cswjkcuav8byn"
 [sub_resource type="Resource" id="Resource_uaqk1"]
 script = ExtResource("2_oiwbm")
 outcome_text = "The girl attacked"
-health_change = -5
+health_change = -7
 sanity_change = -7
 morale_change = -6
 metadata/_custom_type_script = "uid://cswjkcuav8byn"

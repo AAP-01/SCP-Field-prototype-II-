@@ -6,22 +6,24 @@ var event : Resource
 var choice_buttons : Array[Button]
 
 signal choice_selected(outcome : Resource)
+signal event_selected(event : Resource)
 
 # Set up the first event upon starting
 func _ready() -> void:
-	choice_buttons.append($"../../Event/VBoxContainer/Choice 1")	# 0
-	choice_buttons.append($"../../Event/VBoxContainer/Choice 2")	# 1
-	choice_buttons.append($"../../Event/VBoxContainer/Choice 3")	# 2
-	choice_buttons.append($"../../Event/VBoxContainer/Choice 4")	# 3
+	choice_buttons.append($"../../Event/Choice Buttons/Choice 1")	# 0
+	choice_buttons.append($"../../Event/Choice Buttons/Choice 2")	# 1
+	choice_buttons.append($"../../Event/Choice Buttons/Choice 3")	# 2
+	choice_buttons.append($"../../Event/Choice Buttons/Choice 4")	# 3
 	
 	select_event()
 	
 func select_event() -> void:
 	event = EventList.events[randi_range(0, EventList.events.size() - 1)]
+	event_selected.emit(event)	# Goes to Event Information in admin_panel.tscn
 	
 	# Set the set of choices for the event depending on sanity
 	if event is MultipleChoiceEventData:
-		if PlayerManager.sanity >= 30:
+		if SingletonPlayerStats.sanity >= 30:
 			event.chosen_choices = event.choices
 		else:
 			event.chosen_choices = event.low_sanity_choices
@@ -36,12 +38,17 @@ func display_event() -> void:
 	print("Event selected: " + event.resource_path.get_file())
 	
 	# Show event text
-	if PlayerManager.sanity >= 30:
+	if event is MultipleChoiceEventData:
+		if SingletonPlayerStats.sanity >= 30:
+			event.chosen_event_text = event.event_text
+			event_text.text = event.chosen_event_text
+			print("Normal sanity modifier")
+		else:
+			event.chosen_event_text = event.low_sanity_event_text
+			event_text.text = event.chosen_event_text
+			print("Low sanity modifier")
+	elif event is OneChoiceEventData:
 		event_text.text = event.event_text
-		print("Normal sanity modifier")
-	else:
-		event_text.text = event.low_sanity_event_text
-		print("Low sanity modifier")
 		
 	# Show the choices' text on the buttons
 	if event is MultipleChoiceEventData:
@@ -98,7 +105,7 @@ func run_success_rate(index : int) -> void:
 				
 		# Calculating missing ammunition penalty on the success rate
 		# Actual ammunition change is in Player Manager in check_ammo()
-		var remaining_ammunition = PlayerManager.ammunition + event.chosen_choices[index].ammunition_change
+		var remaining_ammunition = SingletonPlayerStats.ammunition + event.chosen_choices[index].ammunition_change
 		var missing_ammunition_penalty
 		
 		match remaining_ammunition:
@@ -115,7 +122,7 @@ func run_success_rate(index : int) -> void:
 				
 		# Calculating the success rate
 		var success_rate = event.choices[index].success_rate - event.difficulty
-		var player_stats = ((PlayerManager.health * 50) + (PlayerManager.sanity * 15) + (PlayerManager.morale * 35)) / 100
+		var player_stats = ((SingletonPlayerStats.health * 50) + (SingletonPlayerStats.sanity * 15) + (SingletonPlayerStats.morale * 35)) / 100
 		success_rate = (success_rate + player_stats) / 2.00
 		var final_success_rate = success_rate * missing_ammunition_penalty
 		final_success_rate = clamp(final_success_rate, 0, 100)
@@ -143,5 +150,5 @@ func run_success_rate(index : int) -> void:
 		choice_selected.emit(event.choice)
 		
 # This runs when PlayerManager to indicate the stats have been changed and can rerun an event
-func _on_player_manager_stats_changed() -> void:
+func _on_player_manager_get_new_event() -> void:
 	select_event()
