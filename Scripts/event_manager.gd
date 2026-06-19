@@ -4,6 +4,7 @@ class_name EventManager
 @onready var event_text: Label = $"../../Event/Event Text"
 var event : Resource
 var choice_buttons : Array[Button]
+var sanity_modifier : String
 
 signal choice_selected(outcome : Resource)
 signal event_selected()
@@ -22,12 +23,16 @@ func select_event() -> void:
 	event = SingletonEvent.event
 	event_selected.emit()	# Goes directly to Event Information in admin_panel.tscn
 	
-	# Set the set of choices for the event depending on sanity
+	# Set the set of choices and text for the event depending on sanity
 	if event is MultipleChoiceEventData:
-		if SingletonPlayerStats.sanity >= 30:
+		if SingletonPlayerStats.sanity >= 30 or event.low_sanity_event_text == "":
+			event.chosen_event_text = event.event_text
 			event.chosen_choices = event.choices
+			sanity_modifier = "Normal sanity modifier"
 		else:
+			event.chosen_event_text = event.low_sanity_event_text
 			event.chosen_choices = event.low_sanity_choices
+			sanity_modifier = "Low sanity modifier"
 			
 	display_event()
 	
@@ -40,14 +45,8 @@ func display_event() -> void:
 	
 	# Show event text
 	if event is MultipleChoiceEventData:
-		if SingletonPlayerStats.sanity >= 30:
-			event.chosen_event_text = event.event_text
-			event_text.text = event.chosen_event_text
-			print("Normal sanity modifier")
-		else:
-			event.chosen_event_text = event.low_sanity_event_text
-			event_text.text = event.chosen_event_text
-			print("Low sanity modifier")
+		event_text.text = event.chosen_event_text
+		print(sanity_modifier)
 	elif event is OneChoiceEventData:
 		event_text.text = event.event_text
 		
