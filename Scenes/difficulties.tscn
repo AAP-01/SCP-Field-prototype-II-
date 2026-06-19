@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://cysqxxt2kn5ss"]
+
+[ext_resource type="Script" uid="uid://dcrcerx0dor8i" path="res://Scripts/difficulties.gd" id="1_ntf80"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Difficulties" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.39100003
+anchor_top = 0.39400002
+anchor_right = 0.609
+anchor_bottom = 0.606
+offset_left = 0.56796265
+offset_top = 0.18798828
+offset_right = -0.5680542
+offset_bottom = -0.1880188
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ntf80")
+
+[node name="Easy" type="Button" parent="Difficulties"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Easy"
+
+[node name="Normal" type="Button" parent="Difficulties"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Normal"
+
+[node name="Hard" type="Button" parent="Difficulties"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Hard
+"
+
+[connection signal="pressed" from="Difficulties/Easy" to="Difficulties" method="_on_easy_pressed"]
+[connection signal="pressed" from="Difficulties/Normal" to="Difficulties" method="_on_normal_pressed"]
+[connection signal="pressed" from="Difficulties/Hard" to="Difficulties" method="_on_hard_pressed"]

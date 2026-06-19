@@ -71,9 +71,10 @@ anchor_bottom = 0.2
 offset_left = -0.10000038
 offset_top = -0.10000038
 offset_right = 0.099975586
-current_tab = 0
+current_tab = 1
 
 [node name="Player" type="TabBar" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -159,7 +160,6 @@ text = "Set morale"
 layout_mode = 2
 
 [node name="Event" type="TabBar" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

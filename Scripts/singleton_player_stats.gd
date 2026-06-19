@@ -9,7 +9,7 @@ var ammunition : int
 var morale : int
 
 enum Difficulty {EASY, NORMAL, HARD}
-var difficulty : Difficulty = Difficulty.EASY
+var difficulty : Difficulty
 var health_cap : int
 var sanity_cap : int
 var advancement_cap : int

@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SingletonPlayerStats="*res://Scripts/singleton_player_stats.gd"
+SingletonEvent="*res://Scripts/singleton_event.gd"
 
 [display]
 

@@ -6,7 +6,7 @@ var event : Resource
 var choice_buttons : Array[Button]
 
 signal choice_selected(outcome : Resource)
-signal event_selected(event : Resource)
+signal event_selected()
 
 # Set up the first event upon starting
 func _ready() -> void:
@@ -18,8 +18,9 @@ func _ready() -> void:
 	select_event()
 	
 func select_event() -> void:
-	event = EventList.events[randi_range(0, EventList.events.size() - 1)]
-	event_selected.emit(event)	# Goes to Event Information in admin_panel.tscn
+	SingletonEvent.event = EventList.events[randi_range(0, EventList.events.size() - 1)]
+	event = SingletonEvent.event
+	event_selected.emit()	# Goes directly to Event Information in admin_panel.tscn
 	
 	# Set the set of choices for the event depending on sanity
 	if event is MultipleChoiceEventData:
