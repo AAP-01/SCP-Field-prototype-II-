@@ -104,34 +104,14 @@ func run_success_rate(index : int) -> void:
 				return
 				
 		# Calculating missing ammunition penalty on the success rate
-		# Actual ammunition change is in Player Manager in check_ammo()
-		var remaining_ammunition = SingletonPlayerStats.ammunition + event.chosen_choices[index].ammunition_change
-		var missing_ammunition_penalty
+		var missing_ammunition_penalty = missing_ammunition_penalty_calculation(index)
 		
-		match remaining_ammunition:
-			var r when r >= -5:
-				missing_ammunition_penalty = 1.00
-			var r when r <= -6 and r >= -10:
-				missing_ammunition_penalty = 0.90
-			var r when r <= -11 and r >= -15:
-				missing_ammunition_penalty = 0.80
-			var r when r <= -16 and r >= -20:
-				missing_ammunition_penalty = 0.60
-			var r when r <= -21:
-				missing_ammunition_penalty = 0.00
-				
 		# Calculating the success rate
-		var success_rate = event.choices[index].success_rate - event.difficulty
-		var player_stats = ((SingletonPlayerStats.health * 50) + (SingletonPlayerStats.sanity * 15) + (SingletonPlayerStats.morale * 35)) / 100
-		success_rate = (success_rate + player_stats) / 2.00
-		var final_success_rate = success_rate * missing_ammunition_penalty
-		final_success_rate = clamp(final_success_rate, 0, 100)
+		var final_success_rate = final_success_rate_calculation(index, missing_ammunition_penalty)
 		
 		# For console
 		print("	Missing ammunition penalty: " + str(missing_ammunition_penalty))
 		print("	Initial success rate: " + str(event.choices[index].success_rate))
-		print("	After subtracting with difficulty: " + str(success_rate))
-		print("	Player stat average: " + str(player_stats))
 		print("	Final success rate: " + str(final_success_rate))
 		print("-----")
 		
@@ -149,6 +129,36 @@ func run_success_rate(index : int) -> void:
 		print("Outcome: " + event.choice.outcome_text)
 		choice_selected.emit(event.choice)
 		
+func missing_ammunition_penalty_calculation(index : int) -> float:
+	# Calculating missing ammunition penalty on the success rate
+	# Actual ammunition change is in Player Manager in check_ammo()
+	var remaining_ammunition = SingletonPlayerStats.ammunition + event.chosen_choices[index].ammunition_change
+	var missing_ammunition_penalty
+	
+	match remaining_ammunition:
+		var r when r >= -5:
+			missing_ammunition_penalty = 1.00
+		var r when r <= -6 and r >= -10:
+			missing_ammunition_penalty = 0.90
+		var r when r <= -11 and r >= -15:
+			missing_ammunition_penalty = 0.80
+		var r when r <= -16 and r >= -20:
+			missing_ammunition_penalty = 0.60
+		var r when r <= -21:
+			missing_ammunition_penalty = 0.00
+			
+	return missing_ammunition_penalty
+		
+func final_success_rate_calculation(index : int, missing_ammunition_penalty : float) -> float:
+	# Calculating the success rate
+	var success_rate = event.choices[index].success_rate - event.difficulty
+	var player_stats = ((SingletonPlayerStats.health * 50) + (SingletonPlayerStats.sanity * 15) + (SingletonPlayerStats.morale * 35)) / 100
+	success_rate = (success_rate + player_stats) / 2.00
+	var final_success_rate = success_rate * missing_ammunition_penalty
+	final_success_rate = clamp(final_success_rate, 0, 100)
+	
+	return final_success_rate
+	
 # This runs when PlayerManager to indicate the stats have been changed and can rerun an event
 func _on_player_manager_get_new_event() -> void:
 	select_event()
