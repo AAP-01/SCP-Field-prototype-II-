@@ -7,7 +7,7 @@ extends Control
 @onready var ammunition: Label = $"Panel/TabContainer/Player/ScrollContainer/Player stats/Ammunition"
 @onready var morale: Label = $"Panel/TabContainer/Player/ScrollContainer/Player stats/Morale"
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Open admin panel"):
 		if visible == true:
 			visible = false

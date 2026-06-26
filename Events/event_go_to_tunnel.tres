@@ -42,6 +42,6 @@ metadata/_custom_type_script = "uid://0m74norco0wn"
 [resource]
 script = ExtResource("2_ry74d")
 event_text = "You've found a tunnel that you have deduced might bring you much closer to the extraction point. It however isn't in the map at all, so you may risk getting lost or hurt"
-difficulty = 2
+difficulty = -2
 choices = Array[ExtResource("1_eublt")]([SubResource("Resource_kcvwj"), SubResource("Resource_yfcct")])
 metadata/_custom_type_script = "uid://cghl73ax2sjo6"

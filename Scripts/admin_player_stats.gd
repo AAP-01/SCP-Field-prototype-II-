@@ -13,6 +13,8 @@ extends VBoxContainer
 @onready var ammunition_amount: Label = $"../../../../../../Stat Bars/Ammunition/Ammunition Amount"
 @onready var morale_amount: Label = $"../../../../../../Stat Bars/Morale/Morale Amount"
 
+signal stat_changed	# Sends to end_game() in SingletonPlayerStats
+
 # Sent from signals in Player Stats
 func _ready() -> void:
 	health.text = "Health: " + str(SingletonPlayerStats.health)
@@ -20,12 +22,15 @@ func _ready() -> void:
 	advancement.text = "Advancement: " + str(SingletonPlayerStats.advancement)
 	ammunition.text = "Ammunition: " + str(SingletonPlayerStats.ammunition)
 	morale.text = "Morale: " + str(SingletonPlayerStats.morale)
+	
+	stat_changed.connect(SingletonPlayerStats.end_game)
 
 func _on_health_input_text_submitted(new_text: String) -> void:
 	var value = clamp(new_text.to_int(), 0, SingletonPlayerStats.health_cap)
 	health.text = "Health: " + str(value)
 	SingletonPlayerStats.health = value
 	health_amount.text = str(SingletonPlayerStats.health) + "/" + str(SingletonPlayerStats.health_cap)
+	stat_changed.emit()
 
 func _on_sanity_input_text_submitted(new_text: String) -> void:
 	var value = clamp(new_text.to_int(), 0, SingletonPlayerStats.sanity_cap)
@@ -37,6 +42,7 @@ func _on_advancement_input_text_submitted(new_text: String) -> void:
 	var value = clamp(new_text.to_int(), 0, SingletonPlayerStats.advancement_cap)
 	advancement.text = "Advancement: " + str(value)
 	SingletonPlayerStats.advancement = value
+	stat_changed.emit()
 
 func _on_ammunition_input_text_submitted(new_text: String) -> void:
 	var value = clamp(new_text.to_int(), 0, SingletonPlayerStats.ammunition_cap)

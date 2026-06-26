@@ -66,6 +66,6 @@ metadata/_custom_type_script = "uid://0m74norco0wn"
 [resource]
 script = ExtResource("1_aojih")
 event_text = "You've found the facility's central armoury. Breaching it will provide a decent health and sanity boost, but you risk alerting nearby creatures"
-difficulty = 3
+difficulty = -3
 choices = Array[ExtResource("1_xkww3")]([SubResource("Resource_vh8u4"), SubResource("Resource_bmqwj"), SubResource("Resource_pu045")])
 metadata/_custom_type_script = "uid://cghl73ax2sjo6"

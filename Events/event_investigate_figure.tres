@@ -41,6 +41,6 @@ metadata/_custom_type_script = "uid://0m74norco0wn"
 [resource]
 script = ExtResource("1_gwwbi")
 event_text = "You thought you spotted something, or something, run past your direction. "
-difficulty = 2
+difficulty = -2
 choices = Array[ExtResource("1_xmmc3")]([SubResource("Resource_8ayh7"), SubResource("Resource_wbfp4")])
 metadata/_custom_type_script = "uid://cghl73ax2sjo6"

@@ -10,6 +10,7 @@ var morale : int
 
 enum Difficulty {EASY, NORMAL, HARD}
 var difficulty : Difficulty
+var event_difficulty : float
 var health_cap : int
 var sanity_cap : int
 var advancement_cap : int
@@ -28,6 +29,7 @@ func set_game_difficulty() -> void:
 			ammunition = 180
 			morale = 100
 			
+			event_difficulty = 0.75
 			health_cap = 100
 			sanity_cap = 100
 			advancement_cap = 15
@@ -40,6 +42,7 @@ func set_game_difficulty() -> void:
 			ammunition = 120
 			morale = 90
 			
+			event_difficulty = 1
 			health_cap = 100
 			sanity_cap = 100
 			advancement_cap = 20
@@ -52,8 +55,18 @@ func set_game_difficulty() -> void:
 			ammunition = 90
 			morale = 75
 			
+			event_difficulty = 1.5
 			health_cap = 90
 			sanity_cap = 90
 			advancement_cap = 30
 			ammunition_cap = 120
 			morale_cap = 90
+			
+func end_game() -> void:
+	# Send to game over
+	if health <= 0:
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+		
+	# Reach the advancement cap to win
+	if advancement >= advancement_cap:	# Set the number to change the length of a game
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")

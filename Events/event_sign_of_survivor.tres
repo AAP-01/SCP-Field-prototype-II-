@@ -42,6 +42,6 @@ metadata/_custom_type_script = "uid://0m74norco0wn"
 [resource]
 script = ExtResource("2_enh1v")
 event_text = "You've stumbled upon signs of at least one survivor. Fresh blood on the floor leads to the locked door of the medical bay"
-difficulty = 1
+difficulty = -1
 choices = Array[ExtResource("1_7dimk")]([SubResource("Resource_qqn41"), SubResource("Resource_rn03m")])
 metadata/_custom_type_script = "uid://cghl73ax2sjo6"

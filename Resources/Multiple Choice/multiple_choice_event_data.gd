@@ -3,7 +3,7 @@ class_name MultipleChoiceEventData
 
 @export var event_text : String
 @export var low_sanity_event_text : String
-@export var difficulty : int	# From 1-10
+@export var difficulty : int	# From -1 to -10
 @export var choices : Array[MultipleChoiceData]
 @export var low_sanity_choices : Array[MultipleChoiceData]
 @export var chosen_event_text : String

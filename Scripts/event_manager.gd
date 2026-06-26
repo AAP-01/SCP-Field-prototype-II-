@@ -2,6 +2,7 @@ extends Node
 class_name EventManager
 
 @onready var event_text: Label = $"../../Event/Event Text"
+@onready var outcome_text: Label = $"../../Event/Outcome Text"
 var event : Resource
 var choice_buttons : Array[Button]
 var sanity_modifier : String
@@ -37,11 +38,17 @@ func select_event() -> void:
 	display_event()
 	
 func display_event() -> void:
+	if choice_buttons[0].pressed.is_connected(_on_choice_1_alternate_pressed):
+		choice_buttons[0].pressed.disconnect(_on_choice_1_alternate_pressed)
+		choice_buttons[0].pressed.connect(_on_choice_1_pressed)
+	
 	# Reset visibility
 	for button in choice_buttons:
 		button.show()
 		
 	print("Event selected: " + event.resource_path.get_file())
+	
+	outcome_text.text = ""
 	
 	# Show event text
 	if event is MultipleChoiceEventData:
@@ -68,20 +75,31 @@ func display_event() -> void:
 		
 func _on_choice_1_pressed() -> void:
 	run_success_rate(0)
+	if event is MultipleChoiceEventData:
+		show_outcome(0)
+	elif event is OneChoiceEventData:
+		select_event()
 	
 func _on_choice_2_pressed() -> void:
 	run_success_rate(1)
+	show_outcome(1)
 
 func _on_choice_3_pressed() -> void:
 	run_success_rate(2)
+	show_outcome(2)
 
 func _on_choice_4_pressed() -> void:
 	run_success_rate(3)
+	show_outcome(3)
+	
+func _on_choice_1_alternate_pressed() -> void:
+	select_event()
 
 func run_success_rate(index : int) -> void:
 	if event is MultipleChoiceEventData:
 		print("Selected: " + event.chosen_choices[index].choice_text)
 		
+		# =================== Events with unconventional success rate ===================
 		# Choices with 100% success immediately emit the signal
 		if event.chosen_choices[index].success_rate == 100:
 			choice_selected.emit(event.chosen_choices[index].outcomes[0])
@@ -90,45 +108,38 @@ func run_success_rate(index : int) -> void:
 		# Skip calculating success rate if the choice is random
 		if event.chosen_choices[index].random:
 			print("This is a random event")
-			print("Success rate: " + str(event.chosen_choices[index].success_rate))
+			print("Success rate: " + str(event.chosen_choices[index].success_rate + (event.difficulty * SingletonPlayerStats.event_difficulty)))
 			
-			var roll = randi_range(0, 100)
-			if roll <= event.chosen_choices[index].success_rate:
-				print("Outcome: " + event.chosen_choices[index].outcomes[0].outcome_text)
-				choice_selected.emit(event.chosen_choices[index].outcomes[0])
-				return
-			else:
-				# Failure. Outcome 1 is always the failed outcome
-				print("Outcome: " + event.chosen_choices[index].outcomes[1].outcome_text)
-				choice_selected.emit(event.chosen_choices[index].outcomes[1])
-				return
-				
+			roll(index, event.chosen_choices[index].success_rate)
+			return
+		# =================== Events with unconventional success rate ===================
+		
 		# Calculating missing ammunition penalty on the success rate
 		var missing_ammunition_penalty = missing_ammunition_penalty_calculation(index)
 		
 		# Calculating the success rate
 		var final_success_rate = final_success_rate_calculation(index, missing_ammunition_penalty)
 		
-		# For console
-		print("	Missing ammunition penalty: " + str(missing_ammunition_penalty))
-		print("	Initial success rate: " + str(event.choices[index].success_rate))
-		print("	Final success rate: " + str(final_success_rate))
-		print("-----")
-		
-		# Roll
-		var roll = randi_range(0, 100)
-		if roll <= final_success_rate:
-			# Success. Outcome 0 is always the succesful outcome
-			print("Outcome: " + event.choices[index].outcomes[0].outcome_text)
-			choice_selected.emit(event.choices[index].outcomes[0])
-		else:
-			# Failure. Outcome 1 is always the failed outcome
-			print("Outcome: " + event.choices[index].outcomes[1].outcome_text)
-			choice_selected.emit(event.choices[index].outcomes[1])
+		# Roll the final_success_rate
+		roll(index, final_success_rate)
 	elif event is OneChoiceEventData:
 		print("Outcome: " + event.choice.outcome_text)
-		choice_selected.emit(event.choice)
+		choice_selected.emit(event.choice)	# Sends to Player Manager
 		
+func roll(index : int, final_success_rate : float) -> void:
+	if randi_range(0, 100) <= final_success_rate:
+		# Success. Outcome 0 is always the succesful outcome
+		SingletonEvent.success = true
+		print("Success")
+		print("Outcome: " + event.chosen_choices[index].outcomes[0].outcome_text)
+		choice_selected.emit(event.chosen_choices[index].outcomes[0])	# Sends to Player Manager
+	else:
+		# Failure. Outcome 1 is always the failed outcome
+		SingletonEvent.success = false
+		print("Fail")
+		print("Outcome: " + event.chosen_choices[index].outcomes[1].outcome_text)
+		choice_selected.emit(event.chosen_choices[index].outcomes[1])	# Sends to Player Manager
+	
 func missing_ammunition_penalty_calculation(index : int) -> float:
 	# Calculating missing ammunition penalty on the success rate
 	# Actual ammunition change is in Player Manager in check_ammo()
@@ -151,14 +162,35 @@ func missing_ammunition_penalty_calculation(index : int) -> float:
 		
 func final_success_rate_calculation(index : int, missing_ammunition_penalty : float) -> float:
 	# Calculating the success rate
-	var success_rate = event.choices[index].success_rate - event.difficulty
-	var player_stats = ((SingletonPlayerStats.health * 50) + (SingletonPlayerStats.sanity * 15) + (SingletonPlayerStats.morale * 35)) / 100
+	var success_rate = event.chosen_choices[index].success_rate + (event.difficulty * SingletonPlayerStats.event_difficulty)
+	print("	Success rate minus difficulty: " + str(success_rate))
+	
+	var player_stats : float = ((SingletonPlayerStats.health * 50) + (SingletonPlayerStats.sanity * 15) + (SingletonPlayerStats.morale * 35)) / 100
+	print("	Player stats average: " + str(player_stats))
+	
 	success_rate = (success_rate + player_stats) / 2.00
+	print("	Success rate plus player stats average: " + str(success_rate))
+	
 	var final_success_rate = success_rate * missing_ammunition_penalty
 	final_success_rate = clamp(final_success_rate, 0, 100)
+	print("	Final success rate: " + str(final_success_rate))
+	print("-----")
 	
 	return final_success_rate
 	
-# This runs when PlayerManager to indicate the stats have been changed and can rerun an event
-func _on_player_manager_get_new_event() -> void:
-	select_event()
+func show_outcome(index : int) -> void:
+	if event is MultipleChoiceEventData:
+		if SingletonEvent.success:
+			outcome_text.text = event.chosen_choices[index].outcomes[0].outcome_text
+		elif !SingletonEvent.success:
+			outcome_text.text = event.chosen_choices[index].outcomes[1].outcome_text
+	elif event is OneChoiceEventData:
+		pass
+		
+	choice_buttons[0].text = "..."
+	choice_buttons[1].hide()
+	choice_buttons[2].hide()
+	choice_buttons[3].hide()
+	
+	choice_buttons[0].pressed.disconnect(_on_choice_1_pressed)
+	choice_buttons[0].pressed.connect(_on_choice_1_alternate_pressed)
