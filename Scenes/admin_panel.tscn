@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bo1to82pq7s76"]
+[gd_scene load_steps=4 format=3 uid="uid://bo1to82pq7s76"]
 
 [ext_resource type="Script" uid="uid://d25s8m7jxelbl" path="res://Scripts/admin_player_stats.gd" id="1_q0irj"]
+[ext_resource type="Script" uid="uid://tixbdmmbilhu" path="res://Scripts/admin_game_information.gd" id="1_uej7p"]
 [ext_resource type="Script" uid="uid://7vqw1xts71pw" path="res://Scripts/admin_event_information.gd" id="2_u785r"]
 
 [node name="Control" type="Control"]
@@ -71,12 +72,65 @@ anchor_bottom = 0.2
 offset_left = -0.10000038
 offset_top = -0.10000038
 offset_right = 0.099975586
-current_tab = 1
+current_tab = 0
+
+[node name="Game" type="TabBar" parent="Panel/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/TabContainer/Game"]
+layout_mode = 0
+offset_right = 290.0
+offset_bottom = 290.0
+
+[node name="Game Information" type="VBoxContainer" parent="Panel/TabContainer/Game/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("1_uej7p")
+
+[node name="Difficulty" type="Label" parent="Panel/TabContainer/Game/ScrollContainer/Game Information"]
+layout_mode = 2
+text = "Difficulty: insert difficulty"
+
+[node name="Event" type="TabBar" parent="Panel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/TabContainer/Event"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 32.222
+offset_bottom = 0.0020141602
+
+[node name="Event Information" type="VBoxContainer" parent="Panel/TabContainer/Event/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("2_u785r")
+
+[node name="Resource name" type="Label" parent="Panel/TabContainer/Event/ScrollContainer/Event Information"]
+layout_mode = 2
+text = "Resource name: insert resource name"
+
+[node name="Resource type" type="Label" parent="Panel/TabContainer/Event/ScrollContainer/Event Information"]
+layout_mode = 2
+text = "Resource type: insert resource type"
+
+[node name="Sanity Modifier" type="Label" parent="Panel/TabContainer/Event/ScrollContainer/Event Information"]
+layout_mode = 2
+text = "Sanity modifier: normal or low"
+
+[node name="Choice Selected" type="Label" parent="Panel/TabContainer/Event/ScrollContainer/Event Information"]
+layout_mode = 2
+text = "Choice selected: insert selected choice"
+
+[node name="Success" type="Label" parent="Panel/TabContainer/Event/ScrollContainer/Event Information"]
+layout_mode = 2
+text = "Success: true or false"
 
 [node name="Player" type="TabBar" parent="Panel/TabContainer"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 0
+metadata/_tab_index = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/TabContainer/Player"]
 layout_mode = 1
@@ -158,33 +212,6 @@ text = "Set morale"
 
 [node name="Morale Input" type="LineEdit" parent="Panel/TabContainer/Player/ScrollContainer/Player stats/Set morale HB"]
 layout_mode = 2
-
-[node name="Event" type="TabBar" parent="Panel/TabContainer"]
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/TabContainer/Event"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 32.222
-offset_bottom = 0.0020141602
-
-[node name="Event Information" type="VBoxContainer" parent="Panel/TabContainer/Event/ScrollContainer"]
-layout_mode = 2
-script = ExtResource("2_u785r")
-
-[node name="Resource name" type="Label" parent="Panel/TabContainer/Event/ScrollContainer/Event Information"]
-layout_mode = 2
-text = "Resource name: insert resource name"
-
-[node name="Resource type" type="Label" parent="Panel/TabContainer/Event/ScrollContainer/Event Information"]
-layout_mode = 2
-text = "Resource type: insert resource type"
-
-[node name="Sanity Modifier" type="Label" parent="Panel/TabContainer/Event/ScrollContainer/Event Information"]
-layout_mode = 2
-text = "Sanity modifier: insert"
 
 [connection signal="text_submitted" from="Panel/TabContainer/Player/ScrollContainer/Player stats/Set health HB/Health input" to="Panel/TabContainer/Player/ScrollContainer/Player stats" method="_on_health_input_text_submitted"]
 [connection signal="text_submitted" from="Panel/TabContainer/Player/ScrollContainer/Player stats/Set sanity HB/Sanity Input" to="Panel/TabContainer/Player/ScrollContainer/Player stats" method="_on_sanity_input_text_submitted"]

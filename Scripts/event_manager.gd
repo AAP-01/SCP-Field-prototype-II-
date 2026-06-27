@@ -8,6 +8,7 @@ var choice_buttons : Array[Button]
 var sanity_modifier : String
 
 signal choice_selected(outcome : Resource)
+signal choice_selected_admin()
 signal event_selected()
 
 # Set up the first event upon starting
@@ -97,34 +98,33 @@ func _on_choice_1_alternate_pressed() -> void:
 
 func run_success_rate(index : int) -> void:
 	if event is MultipleChoiceEventData:
+		SingletonEvent.choice_selected = event.chosen_choices[index]
+		
 		print("Selected: " + event.chosen_choices[index].choice_text)
 		
 		# =================== Events with unconventional success rate ===================
 		# Choices with 100% success immediately emit the signal
 		if event.chosen_choices[index].success_rate == 100:
-			choice_selected.emit(event.chosen_choices[index].outcomes[0])
-			return	# End prematurely since everything below would be useless
-			
+			choice_selected.emit(event.chosen_choices[index].outcomes[0])	# Sends to Player Manager
 		# Skip calculating success rate if the choice is random
-		if event.chosen_choices[index].random:
+		elif event.chosen_choices[index].random:
 			print("This is a random event")
 			print("Success rate: " + str(event.chosen_choices[index].success_rate + (event.difficulty * SingletonPlayerStats.event_difficulty)))
-			
 			roll(index, event.chosen_choices[index].success_rate)
-			return
 		# =================== Events with unconventional success rate ===================
 		
-		# Calculating missing ammunition penalty on the success rate
-		var missing_ammunition_penalty = missing_ammunition_penalty_calculation(index)
-		
-		# Calculating the success rate
-		var final_success_rate = final_success_rate_calculation(index, missing_ammunition_penalty)
-		
-		# Roll the final_success_rate
-		roll(index, final_success_rate)
+		else:	# A typical event
+			var missing_ammunition_penalty = missing_ammunition_penalty_calculation(index)	# Calculating missing ammunition penalty on the success rate
+			var final_success_rate = final_success_rate_calculation(index, missing_ammunition_penalty)	# Calculating the success rate
+			
+			# Roll the final_success_rate
+			roll(index, final_success_rate)
 	elif event is OneChoiceEventData:
+		SingletonEvent.choice_selected = event.choice
 		print("Outcome: " + event.choice.outcome_text)
 		choice_selected.emit(event.choice)	# Sends to Player Manager
+		
+	choice_selected_admin.emit()	# Send to admin_event_information.gd
 		
 func roll(index : int, final_success_rate : float) -> void:
 	if randi_range(0, 100) <= final_success_rate:
@@ -180,10 +180,13 @@ func final_success_rate_calculation(index : int, missing_ammunition_penalty : fl
 	
 func show_outcome(index : int) -> void:
 	if event is MultipleChoiceEventData:
-		if SingletonEvent.success:
+		if event.chosen_choices[index].success_rate == 100:
 			outcome_text.text = event.chosen_choices[index].outcomes[0].outcome_text
-		elif !SingletonEvent.success:
-			outcome_text.text = event.chosen_choices[index].outcomes[1].outcome_text
+		else:
+			if SingletonEvent.success:
+				outcome_text.text = event.chosen_choices[index].outcomes[0].outcome_text
+			elif !SingletonEvent.success:
+				outcome_text.text = event.chosen_choices[index].outcomes[1].outcome_text
 	elif event is OneChoiceEventData:
 		pass
 		
