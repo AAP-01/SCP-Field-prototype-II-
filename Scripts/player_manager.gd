@@ -46,13 +46,13 @@ func _on_event_manager_choice_selected(outcome: Resource) -> void:	# "outcome" s
 	print("=====")
 	stat_changed.emit()	# Signal to show_outcome(index, event) in Event Manager to show the outcome after editing the stats
 	
-	# Send to game over
-	if SingletonPlayerStats.health <= 0:
-		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+	## Send to game over
+	#if SingletonPlayerStats.health <= 0:
+		#get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 		
-	# Reach the number to win
-	if SingletonPlayerStats.advancement >= SingletonPlayerStats.advancement_cap:	# Set the number to change the length of a game
-		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+	## Reach the number to win
+	#if SingletonPlayerStats.advancement >= SingletonPlayerStats.advancement_cap:	# Set the number to change the length of a game
+		#get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 
 func check_ammo(outcome : Resource) -> void:
 	if outcome is OutcomeData:	# Focuses on penalizing success rate of the selected choice
