@@ -46,6 +46,7 @@ func _on_event_manager_choice_selected(outcome: Resource) -> void:	# "outcome" s
 	print("=====")
 	stat_changed.emit()	# Signal to show_outcome(index, event) in Event Manager to show the outcome after editing the stats
 	
+	# Commented because duplicates break the game
 	## Send to game over
 	#if SingletonPlayerStats.health <= 0:
 		#get_tree().change_scene_to_file("res://Scenes/game_over.tscn")

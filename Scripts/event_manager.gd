@@ -21,7 +21,11 @@ func _ready() -> void:
 	select_event()
 	
 func select_event() -> void:
-	SingletonEvent.event = EventList.events[randi_range(0, EventList.events.size() - 1)]
+	while event == SingletonEvent.event:
+		print("Same event as the previous. Rerolling...")
+		print("=====")
+		SingletonEvent.event = EventList.events[randi_range(0, EventList.events.size() - 1)]
+		
 	event = SingletonEvent.event
 	event_selected.emit()	# Goes directly to Event Information in admin_panel.tscn
 	
@@ -165,7 +169,7 @@ func final_success_rate_calculation(index : int, missing_ammunition_penalty : fl
 	var success_rate = event.chosen_choices[index].success_rate + (event.difficulty * SingletonPlayerStats.event_difficulty)
 	print("	Success rate minus difficulty: " + str(success_rate))
 	
-	var player_stats : float = ((SingletonPlayerStats.health * 50) + (SingletonPlayerStats.sanity * 15) + (SingletonPlayerStats.morale * 35)) / 100
+	var player_stats : float = ((SingletonPlayerStats.health * 50) + (SingletonPlayerStats.sanity * 15) + (SingletonPlayerStats.morale * 35)) / 100.00
 	print("	Player stats average: " + str(player_stats))
 	
 	success_rate = (success_rate + player_stats) / 2.00
