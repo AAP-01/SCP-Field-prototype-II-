@@ -7,5 +7,6 @@ static var events = [
 	preload("res://Events/event_sign_of_survivor.tres"),
 	preload("res://Events/event_investigate_figure.tres"),
 	preload("res://Events/event_locked_armoury_found.tres"),
-	preload("res://Events/event_found_supplies.tres")
+	preload("res://Events/event_found_supplies.tres"),
+	preload("res://Events/event_faint_marching.tres")
 ]

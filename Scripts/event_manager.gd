@@ -24,7 +24,7 @@ func select_event() -> void:
 	while event == SingletonEvent.event:
 		print("Same event as the previous. Rerolling...")
 		print("=====")
-		SingletonEvent.event = EventList.events[randi_range(0, EventList.events.size() - 1)]
+		SingletonEvent.event = SingletonEventList.events[randi_range(0, EventList.events.size() - 1)]
 		
 	event = SingletonEvent.event
 	event_selected.emit()	# Goes directly to Event Information in admin_panel.tscn
@@ -61,6 +61,8 @@ func display_event() -> void:
 		print(sanity_modifier)
 	elif event is OneChoiceEventData:
 		event_text.text = event.event_text
+	elif event is NarrativeEventData:
+		event_text.text = event.narrative_text
 		
 	# Show the choices' text on the buttons
 	if event is MultipleChoiceEventData:
@@ -77,30 +79,47 @@ func display_event() -> void:
 		choice_buttons[1].hide()
 		choice_buttons[2].hide()
 		choice_buttons[3].hide()
+	elif event is NarrativeEventData:
+		for i in range(event.response_choices.size()):
+			choice_buttons[i].text = event.response_choices[i].response_text
+			
+		for button in choice_buttons:
+			if button.get_index() > event.response_choices.size() - 1:
+				button.hide()
 		
+# _on_choice_1_pressed() has a unique function to serve event types that only have one option
 func _on_choice_1_pressed() -> void:
-	run_success_rate(0)
+	run_event(0)
 	if event is MultipleChoiceEventData:
 		show_outcome(0)
-	elif event is OneChoiceEventData:
+	elif event is OneChoiceEventData or event is NarrativeEventData:
 		select_event()
 	
 func _on_choice_2_pressed() -> void:
-	run_success_rate(1)
-	show_outcome(1)
+	run_event(1)
+	if event is MultipleChoiceEventData:
+		show_outcome(1)
+	elif event is NarrativeEventData:
+		select_event()
 
 func _on_choice_3_pressed() -> void:
-	run_success_rate(2)
-	show_outcome(2)
+	run_event(2)
+	if event is MultipleChoiceEventData:
+		show_outcome(2)
+	elif event is NarrativeEventData:
+		select_event()
 
 func _on_choice_4_pressed() -> void:
-	run_success_rate(3)
-	show_outcome(3)
+	run_event(3)
+	if event is MultipleChoiceEventData:
+		show_outcome(3)
+	elif event is NarrativeEventData:
+		select_event()
 	
 func _on_choice_1_alternate_pressed() -> void:
 	select_event()
 
-func run_success_rate(index : int) -> void:
+func run_event(index : int) -> void:
 	if event is MultipleChoiceEventData:
 		SingletonEvent.choice_selected = event.chosen_choices[index]
 		
@@ -110,6 +129,7 @@ func run_success_rate(index : int) -> void:
 		# Choices with 100% success immediately emit the signal
 		if event.chosen_choices[index].success_rate == 100:
 			choice_selected.emit(event.chosen_choices[index].outcomes[0])	# Sends to Player Manager
+			
 		# Skip calculating success rate if the choice is random
 		elif event.chosen_choices[index].random:
 			print("This is a random event")
@@ -127,6 +147,9 @@ func run_success_rate(index : int) -> void:
 		SingletonEvent.choice_selected = event.choice
 		print("Outcome: " + event.choice.outcome_text)
 		choice_selected.emit(event.choice)	# Sends to Player Manager
+	elif event is NarrativeEventData:
+		print("Response: " + event.response_choices[index].response_text)
+		print("=====")
 		
 	choice_selected_admin.emit()	# Send to admin_event_information.gd
 		

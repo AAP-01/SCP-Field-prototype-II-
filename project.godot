@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SingletonPlayerStats="*res://Scripts/singleton_player_stats.gd"
 SingletonEvent="*res://Scripts/singleton_event.gd"
+SingletonEventList="*res://Scripts/singleton_event_list.gd"
 
 [display]
 

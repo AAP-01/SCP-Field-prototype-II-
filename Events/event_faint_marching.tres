@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="NarrativeEventData" load_steps=5 format=3 uid="uid://dc4ls6lvqk2rs"]
+
+[ext_resource type="Script" uid="uid://boyrefxce7v8y" path="res://Resources/Narrative/narrative_data.gd" id="1_2v6lp"]
+[ext_resource type="Script" uid="uid://fjhaoapaf3c2" path="res://Resources/Narrative/narrative_event_data.gd" id="1_83q7b"]
+
+[sub_resource type="Resource" id="Resource_2v6lp"]
+script = ExtResource("1_2v6lp")
+response_text = "Ignore it"
+metadata/_custom_type_script = "uid://boyrefxce7v8y"
+
+[sub_resource type="Resource" id="Resource_s05a4"]
+script = ExtResource("1_2v6lp")
+response_text = "Where is that coming from?"
+metadata/_custom_type_script = "uid://boyrefxce7v8y"
+
+[resource]
+script = ExtResource("1_83q7b")
+narrative_text = "You hear the faint, repetitive sound of boots marching"
+response_choices = Array[ExtResource("1_2v6lp")]([SubResource("Resource_2v6lp"), SubResource("Resource_s05a4")])
+metadata/_custom_type_script = "uid://fjhaoapaf3c2"
