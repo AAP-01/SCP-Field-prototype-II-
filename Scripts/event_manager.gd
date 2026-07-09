@@ -36,14 +36,15 @@ func select_event() -> void:
 	
 	# Set the set of choices and text for the event depending on sanity
 	if event is MultipleChoiceEventData:
-		if SingletonPlayerStats.sanity >= 30 or event.low_sanity_event_text == "":
+		if SingletonPlayerStats.sanity >= SingletonPlayerStats.low_sanity_threshold or event.low_sanity_event_text == "":
 			event.chosen_event_text = event.event_text
 			event.chosen_choices = event.choices
 			sanity_modifier = "Normal sanity modifier"
 		else:
-			event.chosen_event_text = event.low_sanity_event_text
-			event.chosen_choices = event.low_sanity_choices
-			sanity_modifier = "Low sanity modifier"
+			if randi_range(0, 1) <= ((SingletonPlayerStats.low_sanity_threshold - SingletonPlayerStats.sanity) / SingletonPlayerStats.low_sanity_threshold):
+				event.chosen_event_text = event.low_sanity_event_text
+				event.chosen_choices = event.low_sanity_choices
+				sanity_modifier = "Low sanity modifier"
 			
 	# Set the selected choice information in the admin panel
 	if event is OneChoiceEventData:
