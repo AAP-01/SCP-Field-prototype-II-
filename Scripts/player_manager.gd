@@ -64,10 +64,10 @@ func check_ammo(outcome : Resource) -> void:
 		
 		# Determine the gain/loss penalty severity based on ammount of ammunition missing
 		match outcome.status:
-			"gain":
+			OneChoiceData.Status.GAIN:
 				for i in range(remaining_ammunition):
 					penalty -= 0.05	# Multiplying a positive number with 0.XX to reduce gain
-			"loss":
+			OneChoiceData.Status.LOSS:
 				for i in range(remaining_ammunition):
 					penalty += 0.05	# Multiplying a negative number with 1.XX to increase loss
 			_:
