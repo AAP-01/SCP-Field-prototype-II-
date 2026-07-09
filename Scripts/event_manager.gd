@@ -7,9 +7,12 @@ var event : Resource
 var choice_buttons : Array[Button]
 var sanity_modifier : String
 
-signal choice_selected(outcome : Resource)
+signal choice_selected()	# Goes to Player Manager
+
+# All to the admin panel
 signal choice_selected_admin()
 signal event_selected()
+signal reset_info_admin()
 
 # Set up the first event upon starting
 func _ready() -> void:
@@ -21,13 +24,15 @@ func _ready() -> void:
 	select_event()
 	
 func select_event() -> void:
+	# Reroll if same event
 	while event == SingletonEvent.event:
 		print("Same event as the previous. Rerolling...")
 		print("=====")
 		SingletonEvent.event = SingletonEventList.events[randi_range(0, EventList.events.size() - 1)]
 		
 	event = SingletonEvent.event
-	event_selected.emit()	# Goes directly to Event Information in admin_panel.tscn
+	
+	event_selected.emit()	# Goes directly to admin_event_information.gd in admin_panel.tscn
 	
 	# Set the set of choices and text for the event depending on sanity
 	if event is MultipleChoiceEventData:
@@ -40,9 +45,15 @@ func select_event() -> void:
 			event.chosen_choices = event.low_sanity_choices
 			sanity_modifier = "Low sanity modifier"
 			
+	# Set the selected choice information in the admin panel
+	if event is OneChoiceEventData:
+		SingletonEvent.choice_selected = event.choice
+		choice_selected_admin.emit()
+			
 	display_event()
 	
 func display_event() -> void:
+	# Set button 1's function back to the event's first option
 	if choice_buttons[0].pressed.is_connected(_on_choice_1_alternate_pressed):
 		choice_buttons[0].pressed.disconnect(_on_choice_1_alternate_pressed)
 		choice_buttons[0].pressed.connect(_on_choice_1_pressed)
@@ -118,6 +129,7 @@ func _on_choice_4_pressed() -> void:
 	
 func _on_choice_1_alternate_pressed() -> void:
 	select_event()
+	reset_info_admin.emit()	# Reset information in the admin panel for the next event
 
 func run_event(index : int) -> void:
 	if event is MultipleChoiceEventData:
@@ -128,7 +140,8 @@ func run_event(index : int) -> void:
 		# =================== Events with unconventional success rate ===================
 		# Choices with 100% success immediately emit the signal
 		if event.chosen_choices[index].success_rate == 100:
-			choice_selected.emit(event.chosen_choices[index].outcomes[0])	# Sends to Player Manager
+			SingletonEvent.outcome = event.chosen_choices[index].outcomes[0]
+			choice_selected.emit()	# Sends to Player Manager
 			
 		# Skip calculating success rate if the choice is random
 		elif event.chosen_choices[index].random:
@@ -144,14 +157,17 @@ func run_event(index : int) -> void:
 			# Roll the final_success_rate
 			roll(index, final_success_rate)
 	elif event is OneChoiceEventData:
+		SingletonEvent.outcome = event.choice
 		SingletonEvent.choice_selected = event.choice
 		print("Outcome: " + event.choice.outcome_text)
-		choice_selected.emit(event.choice)	# Sends to Player Manager
+		choice_selected.emit()	# Sends to Player Manager
 	elif event is NarrativeEventData:
+		SingletonEvent.choice_selected = event.response_choices[index]
 		print("Response: " + event.response_choices[index].response_text)
 		print("=====")
 		
-	choice_selected_admin.emit()	# Send to admin_event_information.gd
+	if event is MultipleChoiceEventData or event is NarrativeEventData:
+		choice_selected_admin.emit()	# Send to admin_event_information.gd
 		
 func roll(index : int, final_success_rate : float) -> void:
 	if randi_range(0, 100) <= final_success_rate:
@@ -159,13 +175,15 @@ func roll(index : int, final_success_rate : float) -> void:
 		SingletonEvent.success = true
 		print("Success")
 		print("Outcome: " + event.chosen_choices[index].outcomes[0].outcome_text)
-		choice_selected.emit(event.chosen_choices[index].outcomes[0])	# Sends to Player Manager
+		SingletonEvent.outcome = event.chosen_choices[index].outcomes[0]
+		choice_selected.emit()	# Sends to Player Manager
 	else:
 		# Failure. Outcome 1 is always the failed outcome
 		SingletonEvent.success = false
 		print("Fail")
 		print("Outcome: " + event.chosen_choices[index].outcomes[1].outcome_text)
-		choice_selected.emit(event.chosen_choices[index].outcomes[1])	# Sends to Player Manager
+		SingletonEvent.outcome = event.chosen_choices[index].outcomes[1]
+		choice_selected.emit()	# Sends to Player Manager
 	
 func missing_ammunition_penalty_calculation(index : int) -> float:
 	# Calculating missing ammunition penalty on the success rate

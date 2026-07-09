@@ -15,7 +15,9 @@ func _ready() -> void:	# Reset the stats to default upon starting a game
 	stat_changed.connect(SingletonPlayerStats.end_game)
 	penalty = 1
 
-func _on_event_manager_choice_selected(outcome: Resource) -> void:	# "outcome" should only be OutcomeData or OneChoiceData (for now)
+func _on_event_manager_choice_selected() -> void:	# "outcome" should only be OutcomeData or OneChoiceData (for now)
+	var outcome : Resource = SingletonEvent.outcome
+	
 	if outcome.ammunition_change < 0:	# Only run if the player runs out of ammunition
 		check_ammo(outcome)
 	
@@ -44,7 +46,6 @@ func _on_event_manager_choice_selected(outcome: Resource) -> void:	# "outcome" s
 	print("	Ammunition change: " + str(outcome.ammunition_change) + ", Current ammunition: " + str(SingletonPlayerStats.ammunition))
 	print("	Morale change: " + str(outcome.morale_change) + ", Current morale: " + str(SingletonPlayerStats.morale))
 	print("=====")
-	stat_changed.emit()	# Signal to show_outcome(index, event) in Event Manager to show the outcome after editing the stats
 	
 	# Commented because duplicates break the game
 	## Send to game over

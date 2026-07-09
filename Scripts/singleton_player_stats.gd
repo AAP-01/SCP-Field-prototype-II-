@@ -15,6 +15,7 @@ var sanity_cap : int
 var advancement_cap : int
 var ammunition_cap : int
 var morale_cap : int
+var low_sanity_threshold : int
 
 func _ready() -> void:
 	set_game_difficulty()
@@ -34,6 +35,7 @@ func set_game_difficulty() -> void:
 			advancement_cap = 15
 			ammunition_cap = 330
 			morale_cap = 100
+			low_sanity_threshold = 10
 		Difficulty.NORMAL:
 			health = 90
 			sanity = 90
@@ -47,6 +49,7 @@ func set_game_difficulty() -> void:
 			advancement_cap = 20
 			ammunition_cap = 180
 			morale_cap = 100
+			low_sanity_threshold = 30
 		Difficulty.HARD:
 			health = 75
 			sanity = 75
@@ -60,6 +63,7 @@ func set_game_difficulty() -> void:
 			advancement_cap = 30
 			ammunition_cap = 120
 			morale_cap = 90
+			low_sanity_threshold = 45
 			
 func end_game() -> void:
 	# Send to game over

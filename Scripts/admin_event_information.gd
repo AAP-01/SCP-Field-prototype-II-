@@ -9,9 +9,12 @@ extends VBoxContainer
 @onready var event_manager: EventManager = $"../../../../../../Managers/Event Manager"
 
 func _ready() -> void:
-	event_manager.event_selected.connect(_on_admin_panel_event_selected)
-	event_manager.choice_selected_admin.connect(_on_admin_panel_event_selected)
-	event_manager.choice_selected_admin.connect(check_success)
+	event_manager.event_selected.connect(update_event_properties)
+	event_manager.choice_selected_admin.connect(update_event_properties)
+	
+	event_manager.choice_selected_admin.connect(update_choice_properies)
+	
+	event_manager.reset_info_admin.connect(reset_info)
 	
 	# For resource_name
 	resource_name.text = "Resource name: " + SingletonEvent.event.resource_path.get_file()
@@ -21,6 +24,8 @@ func _ready() -> void:
 		resource_type.text = "Resource type: MultipleChoiceEventData"
 	elif SingletonEvent.event is OneChoiceEventData:
 		resource_type.text = "Resource type: OneChoiceEventData"
+	elif SingletonEvent.event is NarrativeEventData:
+		resource_type.text = "Resource type: NarrativeEventData"
 		
 	# For sanity_modifer
 	if SingletonEvent.event is MultipleChoiceEventData:
@@ -28,7 +33,7 @@ func _ready() -> void:
 			sanity_modifier.text = "Sanity modifier: normal"
 		else:
 			sanity_modifier.text = "Sanity modifier: low"
-	elif SingletonEvent.event is OneChoiceEventData:
+	elif SingletonEvent.event is OneChoiceEventData or SingletonEvent.event is NarrativeEventData:
 		sanity_modifier.text = "Sanity modifier: N/A"
 		
 	# For choice_selected
@@ -37,17 +42,17 @@ func _ready() -> void:
 	# For success
 	success.text = "Success: N/A"
 	
-# Runs when event_selected, when a new event is selected, from Event Manager emits
-func _on_admin_panel_event_selected() -> void:
+# Runs when event_selected or choice_selected_admin from Event Manager emits
+func update_event_properties() -> void:
 	resource_name.text = "Resource name: " + SingletonEvent.event.resource_path.get_file()
 	
 	# For sanity_modifier
 	if SingletonEvent.event is MultipleChoiceEventData:
-		if SingletonPlayerStats.sanity >= 30:
+		if SingletonPlayerStats.sanity >= SingletonPlayerStats.low_sanity_threshold:
 			sanity_modifier.text = "Sanity modifier: normal"
 		else:
 			sanity_modifier.text = "Sanity modifier: low"
-	elif SingletonEvent.event is OneChoiceEventData:
+	elif SingletonEvent.event is OneChoiceEventData or SingletonEvent.event is NarrativeEventData:
 		sanity_modifier.text = "Sanity modifier: N/A"
 		
 	# For resource_type
@@ -55,14 +60,18 @@ func _on_admin_panel_event_selected() -> void:
 		resource_type.text = "Resource type: MultipleChoiceEventData"
 	elif SingletonEvent.event is OneChoiceEventData:
 		resource_type.text = "Resource type: OneChoiceEventData"
-		
+	elif SingletonEvent.event is NarrativeEventData:
+		resource_type.text = "Resource type: NarrativeEventData"
+	
+func update_choice_properies() -> void:
 	# For choice_selected
 	if SingletonEvent.choice_selected is MultipleChoiceData:
 		choice_selected.text = "Choice selected: " + SingletonEvent.choice_selected.choice_text
-	elif SingletonEvent.choice_selected is OneChoiceData:
-		choice_selected.text = "Choice selected: " + SingletonEvent.choice_selected.outcome_text
-	
-func check_success() -> void:
+	#elif SingletonEvent.choice_selected is OneChoiceData:
+		#choice_selected.text = "Choice selected: " + SingletonEvent.choice_selected.outcome_text
+	elif SingletonEvent.choice_selected is NarrativeData:
+		choice_selected.text = "Choice selected: " + SingletonEvent.choice_selected.response_text
+		
 	# For success
 	if SingletonEvent.choice_selected is MultipleChoiceData:
 		if SingletonEvent.choice_selected.success_rate == 100:
@@ -71,5 +80,9 @@ func check_success() -> void:
 			success.text = "Success: true"
 		else:
 			success.text = "Success: false"
-	elif SingletonEvent.choice_selected is OneChoiceData:
+	elif SingletonEvent.choice_selected is OneChoiceData or SingletonEvent.choice_selected is NarrativeData:
 		success.text = "Success: N/A"
+
+func reset_info() -> void:
+	choice_selected.text = "Choice selected: TBD"
+	success.text = "Success: TBD"
